@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Watches Collection - Customo Shopy</title>
+        <style>
+            body {
+                margin: 0;
+                font-family: "Segoe UI", sans-serif;
+                background-color: #f8f9fa;
+                color: #333;
+                line-height: 1.6;
+            }
+
+            header {
+                background-color: #1d3557;
+                color: white;
+                padding: 15px 30px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            .logo h1 {
+                margin: 0;
+                font-size: 24px;
+            }
+
+            nav ul {
+                display: flex;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                gap: 20px;
+            }
+
+            nav ul li a {
+                color: white;
+                text-decoration: none;
+                font-size: 16px;
+                padding: 8px 12px;
+                border-radius: 4px;
+                transition: all 0.3s ease;
+            }
+
+            nav ul li a:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+            .cart a {
+                color: white;
+                text-decoration: none;
+            }
+
+            .controls {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+                padding: 20px;
+                background-color: #fff;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                position: sticky;
+                top: 0;
+                z-index: 100;
+            }
+
+            .controls input,
+            .controls select {
+                padding: 8px 12px;
+                border-radius: 6px;
+                border: 1px solid #ccc;
+                font-size: 16px;
+                min-width: 180px;
+                outline: none;
+            }
+
+            .controls input:focus,
+            .controls select:focus {
+                border-color: #1d3557;
+                box-shadow: 0 0 0 2px rgba(29, 53, 87, 0.1);
+            }
+
+            .product-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 25px;
+                padding: 30px;
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+
+            .product {
+                background-color: white;
+                padding: 10px;
+                border-radius: 10px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                cursor: pointer;
+                transition: transform 0.3s;
+                overflow: hidden;
+            }
+
+            .product:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            .product img {
+                width: 100%;
+                height: 280px;
+                object-fit: cover;
+                border-radius: 8px;
+                transition: transform 0.3s ease;
+            }
+
+            .product:hover img {
+                transform: scale(1.05);
+            }
+
+            .footer {
+                text-align: center;
+                padding: 30px;
+                background-color: #1d3557;
+                color: white;
+                margin-top: 50px;
+            }
+
+            .home-btn {
+                padding: 12px 24px;
+                margin-top: 10px;
+                font-size: 16px;
+                background-color: #e63946;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .home-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            .price-range-container {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                color: #333;
+            }
+
+            input[type="range"] {
+                width: 200px;
+                height: 5px;
+                -webkit-appearance: none;
+                background: #ddd;
+                border-radius: 5px;
+                outline: none;
+            }
+
+            input[type="range"]::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                width: 18px;
+                height: 18px;
+                background: #1d3557;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            input[type="range"]::-webkit-slider-thumb:hover {
+                transform: scale(1.2);
+            }
+
+            @media (max-width: 768px) {
+                .controls {
+                    flex-direction: column;
+                    padding: 10px;
+                }
+
+                .controls input,
+                .controls select {
+                    width: 100%;
+                }
+
+                .product-grid {
+                    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                    padding: 15px;
+                    gap: 15px;
+                }
+
+                .price-range-container {
+                    width: 100%;
+                    justify-content: center;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <h1>Customo Shopy</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="clothes.html">Clothes</a></li>
+                    <li><a href="shoes.html">Shoes</a></li>
+                    <li><a href="watches.html" class="active">Watches</a></li>
+                    <li><a href="accessories.html">Accessories</a></li>
+                </ul>
+            </nav>
+            <div class="cart">
+                <a href="cart.html">🛒 Cart (0)</a>
+            </div>
+        </header>
+
+        <div class="controls">
+            <input
+                type="text"
+                id="searchBar"
+                placeholder="Search by name..."
+                oninput="filterProducts()"
+            />
+            <select id="categoryFilter" onchange="filterProducts()">
+                <option value="all">All Categories</option>
+                <option value="smart">Smart</option>
+                <option value="analog">Analog</option>
+                <option value="digital">Digital</option>
+            </select>
+            <select id="brandFilter" onchange="filterProducts()">
+                <option value="all">All Brands</option>
+                <option value="fitbit">Fitbit</option>
+                <option value="casio">Casio</option>
+                <option value="rolex">Rolex</option>
+                <option value="fossil">Fossil</option>
+            </select>
+            <select id="sortFilter" onchange="filterProducts()">
+                <option value="default">Sort By</option>
+                <option value="low">Price: Low to High</option>
+                <option value="high">Price: High to Low</option>
+            </select>
+            <div class="price-range-container">
+                <span>Max Price:</span>
+                <input
+                    type="range"
+                    id="priceRange"
+                    min="50"
+                    max="1000"
+                    value="1000"
+                    step="10"
+                    oninput="filterProducts()"
+                />
+                <span id="priceVal">$1000</span>
+            </div>
+        </div>
+
+        <div class="product-grid" id="productGrid"></div>
+
+        <div class="footer">
+            <button
+                class="home-btn"
+                onclick="window.location.href='index.html'"
+            >
+                Back to Home
+            </button>
+            <p>&copy; 2025 Customo Shopy. All rights reserved.</p>
+            <p>
+                Explore the future of time with our stylish and customizable
+                watches.
+            </p>
+        </div>
+
+        <script>
+            // Your existing JavaScript remains the same
+            const products = [
+                {
+                    id: "watch1",
+                    name: "Smart Fit Pro",
+                    brand: "fitbit",
+                    category: "smart",
+                    price: 299,
+                    img: "images/watch1.jpg",
+                },
+                {
+                    id: "watch2",
+                    name: "Classic Gold",
+                    brand: "rolex",
+                    category: "analog",
+                    price: 499,
+                    img: "images/watch2.jpg",
+                },
+                {
+                    id: "watch3",
+                    name: "Digital X1",
+                    brand: "casio",
+                    category: "digital",
+                    price: 199,
+                    img: "images/watch3.jpg",
+                },
+                {
+                    id: "watch4",
+                    name: "Sport Time",
+                    brand: "casio",
+                    category: "digital",
+                    price: 149,
+                    img: "images/watch4.jpg",
+                },
+                {
+                    id: "watch5",
+                    name: "Royal Touch",
+                    brand: "rolex",
+                    category: "analog",
+                    price: 549,
+                    img: "images/watch5.jpg",
+                },
+                {
+                    id: "watch6",
+                    name: "Fit Pulse",
+                    brand: "fitbit",
+                    category: "smart",
+                    price: 399,
+                    img: "images/watch6.jpg",
+                },
+                {
+                    id: "watch7",
+                    name: "Neo Black",
+                    brand: "fossil",
+                    category: "analog",
+                    price: 299,
+                    img: "images/watch7.jpg",
+                },
+                {
+                    id: "watch8",
+                    name: "Digital Nova",
+                    brand: "casio",
+                    category: "digital",
+                    price: 179,
+                    img: "images/watch8.jpg",
+                },
+                {
+                    id: "watch9",
+                    name: "Minimal Pro",
+                    brand: "fossil",
+                    category: "analog",
+                    price: 279,
+                    img: "images/watch9.jpg",
+                },
+                {
+                    id: "watch10",
+                    name: "Health Band 2",
+                    brand: "fitbit",
+                    category: "smart",
+                    price: 349,
+                    img: "images/watch10.jpg",
+                },
+                {
+                    id: "watch11",
+                    name: "Luxury Line",
+                    brand: "rolex",
+                    category: "analog",
+                    price: 799,
+                    img: "images/watch11.jpg",
+                },
+                {
+                    id: "watch12",
+                    name: "Digital One",
+                    brand: "casio",
+                    category: "digital",
+                    price: 129,
+                    img: "images/watch12.jpg",
+                },
+                {
+                    id: "watch13",
+                    name: "Smart Zen",
+                    brand: "fitbit",
+                    category: "smart",
+                    price: 329,
+                    img: "images/watch13.jpg",
+                },
+                {
+                    id: "watch14",
+                    name: "Vintage Dial",
+                    brand: "fossil",
+                    category: "analog",
+                    price: 459,
+                    img: "images/watch14.jpg",
+                },
+                {
+                    id: "watch15",
+                    name: "Glow Time",
+                    brand: "casio",
+                    category: "digital",
+                    price: 109,
+                    img: "images/watch15.jpg",
+                },
+            ];
+
+            function createProductCards(data) {
+                const grid = document.getElementById("productGrid");
+                grid.innerHTML = "";
+                data.forEach((product) => {
+                    const div = document.createElement("div");
+                    div.className = "product";
+                    div.onclick = () =>
+                        (window.location.href = `watch-details.html?id=${product.id}`);
+                    div.innerHTML = `<img src="${product.img}" alt="${product.name}" />`;
+                    grid.appendChild(div);
+                });
+            }
+
+            function filterProducts() {
+                const search = document
+                    .getElementById("searchBar")
+                    .value.toLowerCase();
+                const category =
+                    document.getElementById("categoryFilter").value;
+                const brand = document.getElementById("brandFilter").value;
+                const sort = document.getElementById("sortFilter").value;
+                const maxPrice = parseInt(
+                    document.getElementById("priceRange").value,
+                );
+                document.getElementById("priceVal").textContent =
+                    `$${maxPrice}`;
+
+                let filtered = products.filter(
+                    (p) =>
+                        p.name.toLowerCase().includes(search) &&
+                        (category === "all" || p.category === category) &&
+                        (brand === "all" || p.brand === brand) &&
+                        p.price <= maxPrice,
+                );
+
+                if (sort === "low") {
+                    filtered.sort((a, b) => a.price - b.price);
+                } else if (sort === "high") {
+                    filtered.sort((a, b) => b.price - a.price);
+                }
+
+                createProductCards(filtered);
+            }
+
+            window.onload = () => createProductCards(products);
+        </script>
+    </body>
+</html>

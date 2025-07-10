@@ -1,0 +1,89 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    text-align: center;
+}
+
+.product-details-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.product-details-container img {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.product-info {
+    background: white;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.buy-btn, .cart-btn {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.buy-btn {
+    background: #28a745;
+    color: white;
+}
+
+.cart-btn {
+    background: #007bff;
+    color: white;
+}
+
+.footer {
+    margin-top: 20px;
+}
+
+.home-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background: black;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.product-image {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    display: block;
+}
+.customize-btn {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 18px;
+    color: white;
+    background-color: #ff6600; /* Bright futuristic color */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.customize-btn:hover {
+    background-color: #cc5500;
+    transform: scale(1.1);
+}
+

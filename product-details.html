@@ -1,0 +1,1131 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Product Details - Customo Shopy</title>
+        <link rel="stylesheet" href="product-style.css" />
+        <style>
+            /* Global styles */
+            body {
+                font-family: "Arial", sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f8f9fa;
+                color: #333;
+                line-height: 1.6;
+            }
+
+            /* Header and Navigation styles */
+            header {
+                background-color: #1d3557;
+                color: white;
+                padding: 15px 30px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            .logo h1 {
+                margin: 0;
+                font-size: 24px;
+            }
+
+            nav ul {
+                display: flex;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                gap: 20px;
+            }
+
+            nav ul li a {
+                color: white;
+                text-decoration: none;
+                font-size: 16px;
+                padding: 8px 12px;
+                border-radius: 4px;
+                transition: all 0.3s ease;
+            }
+
+            nav ul li a:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+            .cart a {
+                color: white;
+                text-decoration: none;
+            }
+
+            /* Main content styles */
+            .product-details-container {
+                max-width: 1000px;
+                margin: 50px auto;
+                padding: 30px;
+                background-color: #fff;
+                border-radius: 10px;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+                display: flex;
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+
+            #product-image {
+                width: 100%;
+                max-width: 400px;
+                height: auto;
+                object-fit: contain;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease;
+            }
+
+            #product-image:hover {
+                transform: scale(1.02);
+            }
+
+            .product-info {
+                flex: 1;
+                min-width: 300px;
+            }
+
+            #product-title {
+                color: #1d3557;
+                margin-top: 0;
+                margin-bottom: 15px;
+                font-size: 28px;
+                border-bottom: 2px solid #f1faee;
+                padding-bottom: 10px;
+            }
+
+            #product-description {
+                line-height: 1.8;
+                margin-bottom: 20px;
+                background-color: #f9f9f9;
+                padding: 15px;
+                border-radius: 8px;
+                border-left: 3px solid #457b9d;
+            }
+
+            #product-price {
+                font-size: 24px;
+                font-weight: bold;
+                color: #e63946;
+                display: inline-block;
+                padding: 5px 15px;
+                background-color: rgba(230, 57, 70, 0.1);
+                border-radius: 20px;
+                margin-bottom: 20px;
+            }
+
+            /* Size selector styling */
+            .size-selector {
+                margin: 20px 0;
+                background-color: #f8f9fa;
+                padding: 15px;
+                border-radius: 8px;
+                border: 1px solid #e1e1e1;
+            }
+
+            .size-selector h3 {
+                font-weight: 600;
+                color: #1d3557;
+                margin-top: 0;
+                margin-bottom: 15px;
+            }
+
+            .size-options {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+
+            .size-option {
+                width: 45px;
+                height: 45px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 2px solid #ddd;
+                border-radius: 5px;
+                cursor: pointer;
+                font-weight: bold;
+                transition: all 0.3s ease;
+                background-color: white;
+            }
+
+            .size-option:hover,
+            .size-option.selected {
+                border-color: #3498db;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .size-option.selected {
+                background-color: #3498db;
+                color: white;
+            }
+
+            /* Color selector styling */
+            .color-selector {
+                margin: 20px 0;
+                background-color: #f8f9fa;
+                padding: 15px;
+                border-radius: 8px;
+                border: 1px solid #e1e1e1;
+            }
+
+            .color-selector h3 {
+                font-weight: 600;
+                color: #1d3557;
+                margin-top: 0;
+                margin-bottom: 15px;
+            }
+
+            .color-options {
+                display: flex;
+                gap: 12px;
+            }
+
+            .color-option {
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+                cursor: pointer;
+                border: 2px solid transparent;
+                transition: all 0.3s ease;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .color-option:hover {
+                transform: scale(1.1);
+                box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+            }
+
+            .color-option.selected {
+                border-color: #1d3557;
+                transform: scale(1.1);
+                box-shadow: 0 0 0 3px rgba(29, 53, 87, 0.2);
+            }
+
+            /* Features styling */
+            .features {
+                margin: 20px 0;
+                background-color: #f8f9fa;
+                padding: 15px;
+                border-radius: 8px;
+                border: 1px solid #e1e1e1;
+            }
+
+            .features h3 {
+                font-weight: 600;
+                color: #1d3557;
+                margin-top: 0;
+                margin-bottom: 15px;
+                position: relative;
+                padding-bottom: 10px;
+                border-bottom: 1px solid #e1e1e1;
+            }
+
+            .features h3::after {
+                content: "";
+                position: absolute;
+                bottom: -1px;
+                left: 0;
+                width: 50px;
+                height: 2px;
+                background-color: #1d3557;
+            }
+
+            .features ul {
+                padding-left: 25px;
+                margin-bottom: 5px;
+            }
+
+            .features li {
+                margin-bottom: 10px;
+                position: relative;
+            }
+
+            .features li::before {
+                content: "✓";
+                color: #4caf50;
+                position: absolute;
+                left: -20px;
+                font-weight: bold;
+            }
+
+            .initial-options {
+                display: flex;
+                gap: 15px;
+                margin: 25px 0;
+            }
+
+            .customize-btn,
+            .browse-btn {
+                flex: 1;
+                padding: 12px 24px;
+                font-size: 16px;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-weight: bold;
+                transition:
+                    background-color 0.3s,
+                    transform 0.2s;
+                letter-spacing: 1px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .customize-btn {
+                background-color: #4caf50;
+                color: white;
+            }
+
+            .browse-btn {
+                background-color: #3498db;
+                color: white;
+            }
+
+            .customize-btn:hover,
+            .browse-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            }
+
+            .customize-btn:hover {
+                background-color: #45a049;
+            }
+
+            .browse-btn:hover {
+                background-color: #2980b9;
+            }
+
+            .designer-options {
+                display: none;
+                margin-top: 25px;
+                margin-bottom: 25px;
+                border: 1px solid #ddd;
+                padding: 25px;
+                border-radius: 12px;
+                background-color: #f9f9f9;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+                animation: fadeIn 0.5s ease-out;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .designer-options h3 {
+                margin-top: 0;
+                margin-bottom: 20px;
+                color: #1d3557;
+                text-align: center;
+                font-size: 20px;
+                font-weight: 600;
+                position: relative;
+                padding-bottom: 12px;
+            }
+
+            .designer-options h3::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 60px;
+                height: 3px;
+                background-color: #4caf50;
+                border-radius: 3px;
+            }
+
+            .designers-list {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .designer-card {
+                border: 1px solid #eee;
+                padding: 20px;
+                border-radius: 10px;
+                text-align: center;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                background-color: white;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .designer-card::before {
+                content: "";
+                position: absolute;
+                top: -10px;
+                right: -10px;
+                width: 30px;
+                height: 30px;
+                background-color: rgba(29, 53, 87, 0.05);
+                border-radius: 50%;
+                z-index: 0;
+                transition: transform 0.5s ease;
+            }
+
+            .designer-card:hover::before {
+                transform: scale(12);
+            }
+
+            .designer-card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                border-color: #4caf50;
+            }
+
+            .designer-card img {
+                width: 90px;
+                height: 90px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-bottom: 15px;
+                border: 3px solid #f0f0f0;
+                transition: all 0.3s ease;
+                position: relative;
+                z-index: 1;
+            }
+
+            .designer-card:hover img {
+                border-color: #4caf50;
+                transform: scale(1.05);
+            }
+
+            .designer-card h4 {
+                margin: 10px 0;
+                color: #1d3557;
+                position: relative;
+                z-index: 1;
+                font-size: 18px;
+            }
+
+            .designer-card p {
+                margin: 5px 0;
+                font-size: 14px;
+                color: #666;
+                position: relative;
+                z-index: 1;
+            }
+
+            /* Standard buttons styling */
+            #standard-buttons {
+                display: none;
+                gap: 15px;
+                margin-top: 20px;
+                margin-bottom: 25px;
+                animation: fadeIn 0.5s ease-out;
+            }
+
+            .buy-btn,
+            .cart-btn {
+                padding: 14px 28px;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-weight: bold;
+                font-size: 16px;
+                transition: all 0.3s ease;
+                letter-spacing: 0.5px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .buy-btn {
+                background-color: #28a745;
+                color: white;
+            }
+
+            .buy-btn:hover {
+                background-color: #218838;
+                transform: translateY(-3px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            }
+
+            .cart-btn {
+                background-color: #ffc107;
+                color: #333;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .cart-btn:hover {
+                background-color: #e0a800;
+                transform: translateY(-3px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            }
+
+            /* Review section styling */
+            .reviews {
+                margin-top: 30px;
+                border-top: 1px solid #eee;
+                padding-top: 20px;
+            }
+
+            .reviews h3 {
+                color: #1d3557;
+                margin-bottom: 15px;
+            }
+
+            .reviews textarea {
+                width: 100%;
+                height: 100px;
+                padding: 12px;
+                margin-bottom: 15px;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                resize: vertical;
+                font-family: inherit;
+                font-size: 15px;
+                transition: border-color 0.3s;
+            }
+
+            .reviews textarea:focus {
+                outline: none;
+                border-color: #3498db;
+                box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            }
+
+            .submit-review {
+                background-color: #457b9d;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                font-weight: bold;
+                transition: all 0.3s ease;
+            }
+
+            .submit-review:hover {
+                background-color: #3d6d8b;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Footer styling */
+            .footer {
+                text-align: center;
+                margin: 40px 0 20px;
+            }
+
+            .home-btn {
+                background-color: #1d3557;
+                color: white;
+                padding: 12px 24px;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-weight: bold;
+                transition: all 0.3s ease;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            .home-btn:hover {
+                background-color: #152a45;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Footer styles */
+            footer {
+                background-color: #1d3557;
+                color: white;
+                padding: 30px 0;
+                margin-top: 50px;
+            }
+
+            .footer-content {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            .footer-section {
+                flex: 1;
+                min-width: 250px;
+                margin-bottom: 20px;
+                padding: 0 15px;
+            }
+
+            .footer-section h3 {
+                margin-bottom: 15px;
+                position: relative;
+                padding-bottom: 10px;
+                font-size: 18px;
+            }
+
+            .footer-section h3::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 40px;
+                height: 2px;
+                background-color: #e63946;
+            }
+
+            .footer-section p {
+                margin: 10px 0;
+                font-size: 14px;
+            }
+
+            .footer-section ul {
+                list-style: none;
+                padding: 0;
+            }
+
+            .footer-section ul li {
+                margin-bottom: 8px;
+            }
+
+            .footer-section ul li a {
+                color: #ddd;
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+
+            .footer-section ul li a:hover {
+                color: #fff;
+                text-decoration: underline;
+            }
+
+            .footer-bottom {
+                text-align: center;
+                padding-top: 20px;
+                margin-top: 20px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                font-size: 14px;
+            }
+
+            /* Responsive styles */
+            @media (max-width: 768px) {
+                header {
+                    flex-direction: column;
+                    padding: 15px;
+                }
+
+                nav ul {
+                    flex-direction: column;
+                    gap: 10px;
+                    text-align: center;
+                    margin-top: 15px;
+                }
+
+                .cart {
+                    margin-top: 15px;
+                }
+
+                .product-details-container {
+                    flex-direction: column;
+                    align-items: center;
+                    padding: 20px;
+                }
+
+                #product-image {
+                    width: 100%;
+                }
+
+                .product-info {
+                    width: 100%;
+                }
+
+                .initial-options {
+                    flex-direction: column;
+                }
+
+                .designers-list {
+                    grid-template-columns: 1fr;
+                }
+
+                .footer-content {
+                    flex-direction: column;
+                }
+
+                .footer-section {
+                    text-align: center;
+                    padding: 0;
+                }
+
+                .footer-section h3::after {
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <h1>Customo Shopy</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="index.html#designers">Designers</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                </ul>
+            </nav>
+            <div class="cart">
+                <a href="cart.html">🛒 Cart (0)</a>
+            </div>
+        </header>
+
+        <div class="product-details-container">
+            <img id="product-image" src="" alt="Product Image" />
+            <div class="product-info">
+                <h1 id="product-title">Product Name</h1>
+                <p id="product-description">
+                    Product description will be here...
+                </p>
+                <p id="product-price">$00.00</p>
+
+                <!-- Size selector -->
+                <div class="size-selector">
+                    <h3>Size</h3>
+                    <div class="size-options">
+                        <div
+                            class="size-option"
+                            onclick="selectSize('S', this)"
+                        >
+                            S
+                        </div>
+                        <div
+                            class="size-option"
+                            onclick="selectSize('M', this)"
+                        >
+                            M
+                        </div>
+                        <div
+                            class="size-option selected"
+                            onclick="selectSize('L', this)"
+                        >
+                            L
+                        </div>
+                        <div
+                            class="size-option"
+                            onclick="selectSize('XL', this)"
+                        >
+                            XL
+                        </div>
+                        <div
+                            class="size-option"
+                            onclick="selectSize('XXL', this)"
+                        >
+                            XXL
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Color selector -->
+                <div class="color-selector">
+                    <h3>Color</h3>
+                    <div class="color-options">
+                        <div
+                            class="color-option selected"
+                            style="background-color: #3366cc"
+                            onclick="selectColor('Blue', this)"
+                        ></div>
+                        <div
+                            class="color-option"
+                            style="background-color: #cc3333"
+                            onclick="selectColor('Red', this)"
+                        ></div>
+                        <div
+                            class="color-option"
+                            style="background-color: #333333"
+                            onclick="selectColor('Black', this)"
+                        ></div>
+                        <div
+                            class="color-option"
+                            style="
+                                background-color: #f5f5f5;
+                                border: 1px solid #ddd;
+                            "
+                            onclick="selectColor('White', this)"
+                        ></div>
+                        <div
+                            class="color-option"
+                            style="background-color: #669966"
+                            onclick="selectColor('Green', this)"
+                        ></div>
+                    </div>
+                </div>
+
+                <!-- Features section -->
+                <div class="features">
+                    <h3>Features</h3>
+                    <ul id="product-features">
+                        <li>Premium quality fabric</li>
+                        <li>Comfortable fit and design</li>
+                        <li>Durable stitching for longevity</li>
+                        <li>Easy to care for and maintain</li>
+                        <li>Available in multiple colors and sizes</li>
+                    </ul>
+                </div>
+
+                <!-- Initial options -->
+                <div class="initial-options">
+                    <button class="customize-btn" onclick="showDesigners()">
+                        Customize
+                    </button>
+                    <button class="browse-btn" onclick="browseProducts()">
+                        Browse
+                    </button>
+                </div>
+
+                <!-- Designer options section -->
+                <div id="designer-options" class="designer-options">
+                    <h3>Choose a Designer for Customization</h3>
+                    <div class="designers-list">
+                        <div
+                            class="designer-card"
+                            onclick="selectDesigner('designer1')"
+                        >
+                            <img src="images/designer1.jpg" alt="Designer 1" />
+                            <h4>Sarah Johnson</h4>
+                            <p>Specializes in casual wear</p>
+                        </div>
+                        <div
+                            class="designer-card"
+                            onclick="selectDesigner('designer2')"
+                        >
+                            <img src="images/designer2.jpg" alt="Designer 2" />
+                            <h4>Michael Chen</h4>
+                            <p>Expert in formal attire</p>
+                        </div>
+                        <div
+                            class="designer-card"
+                            onclick="selectDesigner('designer3')"
+                        >
+                            <img src="images/designer3.jpg" alt="Designer 3" />
+                            <h4>Elena Rodriguez</h4>
+                            <p>Focuses on unique patterns</p>
+                        </div>
+                        <div
+                            class="designer-card"
+                            onclick="selectDesigner('designer4')"
+                        >
+                            <img src="images/designer4.jpg" alt="Designer 4" />
+                            <h4>James Wilson</h4>
+                            <p>Specializes in streetwear</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Standard buttons (will be hidden initially) -->
+                <div id="standard-buttons">
+                    <button class="buy-btn" onclick="buyNow()">Buy Now</button>
+                    <button class="cart-btn" onclick="addToCart()">
+                        🛒 Add to Cart
+                    </button>
+                </div>
+
+                <div class="reviews">
+                    <h3>Customer Reviews</h3>
+                    <textarea placeholder="Write a review..."></textarea>
+                    <button class="submit-review" onclick="submitReview()">
+                        Submit Review
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Customo Shopy</h3>
+                    <p>Personalized style, at your fingertips.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="index.html#designers">Designers</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@customoshopy.com</p>
+                    <p>Phone: (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2025 Customo Shopy. All rights reserved.
+            </div>
+        </footer>
+
+        <script>
+            // Global variables for size and color selection
+            let selectedSize = "L";
+            let selectedColor = "Blue";
+
+            // Function to select size
+            function selectSize(size, element) {
+                selectedSize = size;
+
+                // Update UI to show selected size
+                document.querySelectorAll(".size-option").forEach((option) => {
+                    option.classList.remove("selected");
+                });
+                element.classList.add("selected");
+
+                console.log(`Selected size: ${selectedSize}`);
+            }
+
+            // Function to select color
+            function selectColor(color, element) {
+                selectedColor = color;
+
+                // Update UI to show selected color
+                document.querySelectorAll(".color-option").forEach((option) => {
+                    option.classList.remove("selected");
+                });
+                element.classList.add("selected");
+
+                console.log(`Selected color: ${selectedColor}`);
+            }
+
+            // Function to extract query parameters
+            function getQueryParam(param) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(param);
+            }
+
+            // Function to load product details dynamically
+            function loadProductDetails() {
+                const productId = getQueryParam("id") || "product1";
+
+                // Define product details (You can replace this with a real database later)
+                const products = {
+                    product1: {
+                        img: "images/clothes1.png",
+                        title: "Stylish Shirt",
+                        price: "$50",
+                        description:
+                            "High-quality cotton shirt with a modern design. Perfect for casual outings and social events. Features breathable fabric that keeps you comfortable all day long.",
+                        features: [
+                            "Premium 100% cotton material",
+                            "Breathable fabric for all-day comfort",
+                            "Reinforced stitching at stress points",
+                            "Machine washable, easy to maintain",
+                            "Available in multiple colors",
+                        ],
+                    },
+                    product2: {
+                        img: "images/clothes2.png",
+                        title: "Denim Jacket",
+                        price: "$70",
+                        description:
+                            "Trendy denim jacket for all seasons. Made with premium denim that lasts for years while maintaining its appearance. Features multiple pockets and adjustable cuffs.",
+                        features: [
+                            "Durable premium denim material",
+                            "Multiple functional pockets",
+                            "Adjustable cuffs and waist",
+                            "Distressed detailing for style",
+                            "Versatile design for any outfit",
+                        ],
+                    },
+                    product3: {
+                        img: "images/clothes3.jpg",
+                        title: "Casual T-Shirt",
+                        price: "$30",
+                        description:
+                            "Comfortable and stylish t-shirt for everyday wear. Made from soft cotton blend fabric that's gentle on your skin. Available in multiple colors to match your style.",
+                        features: [
+                            "Soft cotton-blend fabric",
+                            "Reinforced collar that won't sag",
+                            "Pre-shrunk to maintain fit",
+                            "Tagless design for comfort",
+                            "Double-stitched hems for durability",
+                        ],
+                    },
+                    product4: {
+                        img: "images/clothes4.jpg",
+                        title: "Formal Suit",
+                        price: "$120",
+                        description:
+                            "Perfect for business and formal events. Tailored with precision using high-quality fabric that gives you a sharp, professional look. Includes jacket and matching pants.",
+                        features: [
+                            "Premium wool blend material",
+                            "Fully lined jacket for comfort",
+                            "Interior pockets for convenience",
+                            "Tailored fit with modern cut",
+                            "Wrinkle-resistant fabric",
+                        ],
+                    },
+                    product5: {
+                        img: "images/clothes5.jpg",
+                        title: "Hoodie",
+                        price: "$60",
+                        description:
+                            "Warm and cozy hoodie for winter. Features a soft inner lining that retains heat while remaining breathable. Includes adjustable hood and convenient front pocket.",
+                        features: [
+                            "Fleece-lined for extra warmth",
+                            "Adjustable drawstring hood",
+                            "Kangaroo pocket for storage",
+                            "Ribbed cuffs and waistband",
+                            "Pill-resistant fabric",
+                        ],
+                    },
+                    product6: {
+                        img: "images/clothes6.jpg",
+                        title: "Sportswear",
+                        price: "$40",
+                        description:
+                            "Breathable sportswear for workouts and athletic activities. Made with moisture-wicking fabric that keeps you dry during intense exercise. Designed for maximum comfort and flexibility.",
+                        features: [
+                            "Moisture-wicking technology",
+                            "Four-way stretch fabric",
+                            "Flatlock seams to prevent chafing",
+                            "Reflective details for visibility",
+                            "Quick-drying material",
+                        ],
+                    },
+                    product7: {
+                        img: "images/clothes7.jpg",
+                        title: "Elegant Dress",
+                        price: "$90",
+                        description:
+                            "Beautiful dress for special occasions. Features a flattering silhouette and premium fabric that drapes elegantly. Perfect for formal events, parties, and celebrations.",
+                        features: [
+                            "Premium fabric with elegant drape",
+                            "Flattering A-line silhouette",
+                            "Hidden side zipper",
+                            "Fully lined for comfort",
+                            "Detailed stitching for refined look",
+                        ],
+                    },
+                    product8: {
+                        img: "images/clothes8.jpg",
+                        title: "Classic Jeans",
+                        price: "$55",
+                        description:
+                            "Durable and stylish jeans that complement any outfit. Made from premium denim with just the right amount of stretch for comfort. Features classic five-pocket design and sturdy construction.",
+                        features: [
+                            "Premium denim with slight stretch",
+                            "Classic five-pocket design",
+                            "Reinforced belt loops",
+                            "Stylish vintage wash",
+                            "Available in multiple fits",
+                        ],
+                    },
+                };
+
+                // If product exists, update the page
+                if (products[productId]) {
+                    document.getElementById("product-image").src =
+                        products[productId].img;
+                    document.getElementById("product-title").textContent =
+                        products[productId].title;
+                    document.getElementById("product-description").textContent =
+                        products[productId].description;
+                    document.getElementById("product-price").textContent =
+                        products[productId].price;
+
+                    // Update features list with product-specific features
+                    const featuresList =
+                        document.getElementById("product-features");
+                    featuresList.innerHTML = "";
+                    products[productId].features.forEach((feature) => {
+                        const li = document.createElement("li");
+                        li.textContent = feature;
+                        featuresList.appendChild(li);
+                    });
+                } else {
+                    document.querySelector(
+                        ".product-details-container",
+                    ).innerHTML = "<h2>Product Not Found</h2>";
+                }
+            }
+
+            // Function to navigate back to home
+            function goHome() {
+                window.location.href = "index.html";
+            }
+
+            // Function to show designers list
+            function showDesigners() {
+                document.getElementById("designer-options").style.display =
+                    "block";
+                document.querySelector(".initial-options").style.display =
+                    "none";
+            }
+
+            // Function to browse other products
+            function browseProducts() {
+                // Show standard buttons when browsing
+                document.getElementById("standard-buttons").style.display =
+                    "flex";
+                document.querySelector(".initial-options").style.display =
+                    "none";
+            }
+
+            // Function to select a designer and go to customization page
+            function selectDesigner(designerId) {
+                const productId = getQueryParam("id") || "product1";
+                window.location.href = `customize.html?product=${productId}&designer=${designerId}&size=${selectedSize}&color=${selectedColor}`;
+            }
+
+            // Function to handle buy now button
+            function buyNow() {
+                const productId = getQueryParam("id") || "product1";
+                const productTitle =
+                    document.getElementById("product-title").textContent;
+                alert(
+                    `Proceeding to checkout: ${productTitle} - Size: ${selectedSize}, Color: ${selectedColor}`,
+                );
+            }
+
+            // Function to handle add to cart button
+            function addToCart() {
+                const productId = getQueryParam("id") || "product1";
+                const productTitle =
+                    document.getElementById("product-title").textContent;
+                alert(
+                    `Added to cart: ${productTitle} - Size: ${selectedSize}, Color: ${selectedColor}`,
+                );
+            }
+
+            // Function to submit review
+            function submitReview() {
+                const reviewText =
+                    document.querySelector(".reviews textarea").value;
+                if (reviewText.trim() === "") {
+                    alert("Please write a review before submitting.");
+                } else {
+                    alert("Thank you for your review!");
+                    document.querySelector(".reviews textarea").value = "";
+                }
+            }
+
+            // Load product details when page loads
+            window.onload = loadProductDetails;
+        </script>
+    </body>
+</html>

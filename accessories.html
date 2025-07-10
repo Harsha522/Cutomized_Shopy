@@ -1,0 +1,1681 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Accessories Collection - Customo Shopy</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        />
+        <style>
+            /* Global Styles & Variables */
+            :root {
+                --primary-color: #1d3557;
+                --secondary-color: #457b9d;
+                --accent-color: #e63946;
+                --light-color: #f1faee;
+                --dark-color: #212529;
+                --gray-color: #6c757d;
+                --transition: all 0.3s ease;
+                --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.15);
+                --border-radius: 10px;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family:
+                    "Segoe UI",
+                    system-ui,
+                    -apple-system,
+                    sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f8f9fa;
+                color: var(--dark-color);
+                line-height: 1.6;
+            }
+
+            /* Header Styles */
+            header {
+                background-color: var(--primary-color);
+                color: white;
+                padding: 0;
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+                box-shadow: var(--shadow);
+            }
+
+            .top-nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 15px 5%;
+                background-color: var(--primary-color);
+            }
+
+            .brand {
+                font-size: 24px;
+                font-weight: 700;
+                letter-spacing: 1px;
+                color: white;
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+            }
+
+            .brand span {
+                background-color: var(--accent-color);
+                padding: 3px 8px;
+                border-radius: 4px;
+                margin-left: 5px;
+            }
+
+            nav ul {
+                display: flex;
+                list-style: none;
+            }
+
+            nav ul li {
+                margin-left: 20px;
+            }
+
+            nav ul li a {
+                color: white;
+                text-decoration: none;
+                font-size: 16px;
+                font-weight: 500;
+                transition: var(--transition);
+                padding: 8px 12px;
+                border-radius: 4px;
+            }
+
+            nav ul li a:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+            .page-title {
+                background-color: #f1faee;
+                color: var(--primary-color);
+                text-align: center;
+                padding: 40px 20px;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .page-title::before,
+            .page-title::after {
+                content: "";
+                position: absolute;
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                opacity: 0.1;
+                z-index: 0;
+            }
+
+            .page-title::before {
+                background-color: var(--accent-color);
+                top: -50px;
+                left: -50px;
+            }
+
+            .page-title::after {
+                background-color: var(--secondary-color);
+                bottom: -50px;
+                right: -50px;
+            }
+
+            .page-title h1 {
+                font-size: 32px;
+                margin-bottom: 10px;
+                position: relative;
+                z-index: 1;
+            }
+
+            .page-title p {
+                color: var(--gray-color);
+                max-width: 800px;
+                margin: 0 auto;
+                position: relative;
+                z-index: 1;
+            }
+
+            /* Filter Section Styles */
+            .filter-section {
+                background-color: white;
+                padding: 20px 5%;
+                box-shadow: var(--shadow);
+                position: sticky;
+                top: 60px;
+                z-index: 990;
+                transition: var(--transition);
+            }
+
+            .filter-section.scrolled {
+                padding: 10px 5%;
+            }
+
+            .filter-container {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .search-container {
+                position: relative;
+                flex: 1;
+                min-width: 200px;
+                max-width: 400px;
+            }
+
+            .search-container input {
+                width: 100%;
+                padding: 12px 15px 12px 40px;
+                border: 2px solid #e1e5eb;
+                border-radius: var(--border-radius);
+                font-size: 16px;
+                transition: var(--transition);
+            }
+
+            .search-container i {
+                position: absolute;
+                left: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+                color: var(--gray-color);
+            }
+
+            .search-container input:focus {
+                border-color: var(--secondary-color);
+                outline: none;
+                box-shadow: 0 0 0 3px rgba(69, 123, 157, 0.2);
+            }
+
+            .filter-group {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+            }
+
+            .filter-select,
+            .sort-select {
+                padding: 12px 15px;
+                border: 2px solid #e1e5eb;
+                border-radius: var(--border-radius);
+                background-color: white;
+                font-size: 15px;
+                min-width: 150px;
+                cursor: pointer;
+                transition: var(--transition);
+                appearance: none;
+                background-image: url('data:image/svg+xml;utf8,<svg fill="%236c757d" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+                background-repeat: no-repeat;
+                background-position: right 10px center;
+            }
+
+            .filter-select:focus,
+            .sort-select:focus {
+                border-color: var(--secondary-color);
+                outline: none;
+                box-shadow: 0 0 0 3px rgba(69, 123, 157, 0.2);
+            }
+
+            .view-options {
+                display: flex;
+                gap: 10px;
+            }
+
+            .view-btn {
+                padding: 10px;
+                border: 2px solid #e1e5eb;
+                background-color: white;
+                border-radius: var(--border-radius);
+                cursor: pointer;
+                transition: var(--transition);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .view-btn.active,
+            .view-btn:hover {
+                border-color: var(--secondary-color);
+                color: var(--secondary-color);
+            }
+
+            .active-filters {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                margin-top: 15px;
+            }
+
+            .filter-tag {
+                display: inline-flex;
+                align-items: center;
+                padding: 5px 12px;
+                background-color: #e9ecef;
+                border-radius: 20px;
+                font-size: 14px;
+                color: var(--dark-color);
+                transition: var(--transition);
+            }
+
+            .filter-tag i {
+                margin-left: 8px;
+                cursor: pointer;
+                font-size: 12px;
+            }
+
+            .filter-tag:hover {
+                background-color: #dee2e6;
+            }
+
+            /* Product Grid Styles */
+            .product-container {
+                padding: 30px 5%;
+            }
+
+            .product-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 25px;
+                transition: var(--transition);
+            }
+
+            .product-grid.list-view {
+                grid-template-columns: 1fr;
+            }
+
+            .product-card {
+                background-color: white;
+                border-radius: var(--border-radius);
+                overflow: hidden;
+                box-shadow: var(--shadow);
+                transition: var(--transition);
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+            }
+
+            .product-card:hover {
+                transform: translateY(-5px);
+                box-shadow: var(--shadow-hover);
+            }
+
+            .product-grid.list-view .product-card {
+                display: grid;
+                grid-template-columns: 200px 1fr;
+            }
+
+            .product-image {
+                position: relative;
+                overflow: hidden;
+            }
+
+            .product-image img {
+                width: 100%;
+                height: 250px;
+                object-fit: cover;
+                transition: transform 0.5s ease;
+                display: block;
+            }
+
+            .product-card:hover .product-image img {
+                transform: scale(1.05);
+            }
+
+            .product-grid.list-view .product-image img {
+                height: 100%;
+            }
+
+            .product-badge {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                padding: 5px 12px;
+                border-radius: 20px;
+                font-size: 12px;
+                font-weight: 600;
+                color: white;
+                z-index: 1;
+            }
+
+            .badge-new {
+                background-color: var(--accent-color);
+            }
+
+            .badge-sale {
+                background-color: var(--secondary-color);
+            }
+
+            .product-actions {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                z-index: 2;
+            }
+
+            .action-btn {
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+                background-color: white;
+                color: var(--dark-color);
+                border: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: var(--transition);
+                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .action-btn:hover {
+                background-color: var(--primary-color);
+                color: white;
+            }
+
+            .action-btn.wishlist-active {
+                background-color: var(--accent-color);
+                color: white;
+            }
+
+            .product-info-container {
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+            }
+
+            .product-name {
+                font-size: 18px;
+                font-weight: 600;
+                margin-bottom: 8px;
+                color: var(--dark-color);
+                transition: var(--transition);
+            }
+
+            .product-card:hover .product-name {
+                color: var(--secondary-color);
+            }
+
+            .product-category {
+                color: var(--gray-color);
+                font-size: 14px;
+                margin-bottom: 12px;
+            }
+
+            .product-description {
+                display: none;
+                color: var(--gray-color);
+                font-size: 15px;
+                margin-bottom: 15px;
+                line-height: 1.5;
+            }
+
+            .product-grid.list-view .product-description {
+                display: block;
+            }
+
+            .product-price-container {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                margin-top: auto;
+            }
+
+            .product-price {
+                font-size: 18px;
+                font-weight: 700;
+                color: var(--dark-color);
+            }
+
+            .product-price-old {
+                text-decoration: line-through;
+                color: var(--gray-color);
+                font-size: 14px;
+            }
+
+            .product-rating {
+                display: flex;
+                align-items: center;
+                margin-left: auto;
+            }
+
+            .rating-stars {
+                color: #ffc107;
+                font-size: 14px;
+            }
+
+            .rating-count {
+                font-size: 13px;
+                color: var(--gray-color);
+                margin-left: 5px;
+            }
+
+            .product-bottom {
+                padding: 0 20px 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .product-colors {
+                display: flex;
+                gap: 5px;
+            }
+
+            .color-option {
+                width: 18px;
+                height: 18px;
+                border-radius: 50%;
+                border: 2px solid #fff;
+                box-shadow: 0 0 0 1px #e1e5eb;
+                cursor: pointer;
+                transition: transform 0.2s ease;
+            }
+
+            .color-option:hover {
+                transform: scale(1.2);
+            }
+
+            .view-btn-container {
+                text-align: center;
+                margin-top: 40px;
+            }
+
+            .load-more {
+                padding: 12px 30px;
+                background-color: var(--primary-color);
+                color: white;
+                border: none;
+                border-radius: var(--border-radius);
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: var(--transition);
+            }
+
+            .load-more:hover {
+                background-color: #0f2942;
+                transform: translateY(-2px);
+            }
+
+            /* Empty state */
+            .empty-state {
+                text-align: center;
+                padding: 50px 20px;
+                display: none;
+            }
+
+            .empty-state i {
+                font-size: 50px;
+                color: #d1d5db;
+                margin-bottom: 15px;
+            }
+
+            .empty-state h3 {
+                font-size: 20px;
+                margin-bottom: 10px;
+                color: var(--dark-color);
+            }
+
+            .empty-state p {
+                color: var(--gray-color);
+                max-width: 500px;
+                margin: 0 auto 20px;
+            }
+
+            .reset-filters {
+                padding: 10px 20px;
+                background-color: var(--primary-color);
+                color: white;
+                border: none;
+                border-radius: var(--border-radius);
+                font-size: 15px;
+                cursor: pointer;
+                transition: var(--transition);
+            }
+
+            .reset-filters:hover {
+                background-color: #0f2942;
+            }
+
+            /* Footer Styles */
+            footer {
+                background-color: var(--primary-color);
+                color: white;
+                padding: 50px 5% 20px;
+                margin-top: 50px;
+            }
+
+            .footer-content {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 30px;
+                margin-bottom: 30px;
+            }
+
+            .footer-section h3 {
+                font-size: 18px;
+                margin-bottom: 20px;
+                position: relative;
+                padding-bottom: 10px;
+            }
+
+            .footer-section h3::after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 50px;
+                height: 2px;
+                background-color: var(--accent-color);
+            }
+
+            .footer-section p {
+                margin-bottom: 15px;
+                font-size: 15px;
+                color: #a8b7c5;
+                line-height: 1.6;
+            }
+
+            .footer-links {
+                list-style: none;
+            }
+
+            .footer-links li {
+                margin-bottom: 12px;
+            }
+
+            .footer-links a {
+                color: #a8b7c5;
+                text-decoration: none;
+                transition: var(--transition);
+                display: inline-block;
+            }
+
+            .footer-links a:hover {
+                color: white;
+                transform: translateX(3px);
+            }
+
+            .social-icons {
+                display: flex;
+                gap: 15px;
+                margin-top: 20px;
+            }
+
+            .social-icon {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: rgba(255, 255, 255, 0.1);
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: var(--transition);
+            }
+
+            .social-icon:hover {
+                background-color: var(--accent-color);
+                transform: translateY(-3px);
+            }
+
+            .newsletter-form {
+                display: flex;
+                margin-top: 15px;
+            }
+
+            .newsletter-input {
+                flex: 1;
+                padding: 12px 15px;
+                border: none;
+                border-top-left-radius: var(--border-radius);
+                border-bottom-left-radius: var(--border-radius);
+                font-size: 14px;
+            }
+
+            .newsletter-input:focus {
+                outline: none;
+            }
+
+            .newsletter-btn {
+                padding: 0 15px;
+                background-color: var(--accent-color);
+                color: white;
+                border: none;
+                border-top-right-radius: var(--border-radius);
+                border-bottom-right-radius: var(--border-radius);
+                cursor: pointer;
+                transition: var(--transition);
+            }
+
+            .newsletter-btn:hover {
+                background-color: #d62839;
+            }
+
+            .footer-bottom {
+                text-align: center;
+                padding-top: 20px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                font-size: 14px;
+                color: #a8b7c5;
+            }
+
+            /* Responsive Styles */
+            @media (max-width: 1024px) {
+                .page-title {
+                    padding: 30px 20px;
+                }
+
+                .page-title h1 {
+                    font-size: 28px;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .top-nav {
+                    flex-direction: column;
+                    padding: 15px;
+                }
+
+                nav ul {
+                    margin-top: 15px;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                }
+
+                nav ul li {
+                    margin: 5px;
+                }
+
+                .filter-container {
+                    flex-direction: column;
+                    align-items: stretch;
+                }
+
+                .search-container {
+                    max-width: none;
+                }
+
+                .filter-group,
+                .view-options {
+                    justify-content: space-between;
+                }
+
+                .filter-select,
+                .sort-select {
+                    min-width: 0;
+                    flex: 1;
+                }
+
+                .product-grid {
+                    grid-template-columns: repeat(
+                        auto-fill,
+                        minmax(200px, 1fr)
+                    );
+                }
+
+                .product-grid.list-view .product-card {
+                    grid-template-columns: 1fr;
+                }
+
+                .product-grid.list-view .product-image img {
+                    height: 250px;
+                }
+
+                .footer-section h3::after {
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+
+                .footer-section {
+                    text-align: center;
+                }
+
+                .social-icons {
+                    justify-content: center;
+                }
+
+                .footer-links a:hover {
+                    transform: none;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .page-title h1 {
+                    font-size: 24px;
+                }
+
+                .view-btn {
+                    padding: 8px;
+                }
+
+                .product-grid {
+                    grid-template-columns: 1fr;
+                }
+
+                .newsletter-form {
+                    flex-direction: column;
+                }
+
+                .newsletter-input {
+                    border-radius: var(--border-radius);
+                }
+
+                .newsletter-btn {
+                    margin-top: 10px;
+                    border-radius: var(--border-radius);
+                    padding: 10px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="top-nav">
+                <a href="index.html" class="brand">Customo<span>Shopy</span></a>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="watches.html">Watches</a></li>
+                        <li><a href="shoes.html">Shoes</a></li>
+                        <li><a href="accessories.html">Accessories</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="page-title">
+                <h1>Accessories Collection</h1>
+                <p>
+                    Discover our range of high-quality accessories to complete
+                    your look. From stylish jewelry to premium bags and hats.
+                </p>
+            </div>
+        </header>
+
+        <section class="filter-section" id="filterSection">
+            <div class="filter-container">
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input
+                        type="text"
+                        id="searchBox"
+                        placeholder="Search accessories..."
+                        onkeyup="filterProducts()"
+                    />
+                </div>
+                <div class="filter-group">
+                    <select
+                        id="categoryFilter"
+                        class="filter-select"
+                        onchange="filterProducts()"
+                    >
+                        <option value="all">All Categories</option>
+                        <option value="jewelry">Jewelry</option>
+                        <option value="bags">Bags</option>
+                        <option value="hats">Hats</option>
+                        <option value="belts">Belts</option>
+                        <option value="sunglasses">Sunglasses</option>
+                    </select>
+                    <select
+                        id="priceFilter"
+                        class="filter-select"
+                        onchange="filterProducts()"
+                    >
+                        <option value="all">All Prices</option>
+                        <option value="under50">Under $50</option>
+                        <option value="50to100">$50 - $100</option>
+                        <option value="100to200">$100 - $200</option>
+                        <option value="over200">Over $200</option>
+                    </select>
+                    <select
+                        id="sortFilter"
+                        class="sort-select"
+                        onchange="filterProducts()"
+                    >
+                        <option value="default">Sort By</option>
+                        <option value="low-high">Price: Low to High</option>
+                        <option value="high-low">Price: High to Low</option>
+                        <option value="newest">Newest First</option>
+                        <option value="rating">Customer Rating</option>
+                    </select>
+                </div>
+                <div class="view-options">
+                    <button
+                        class="view-btn grid-view active"
+                        onclick="changeView('grid')"
+                    >
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button
+                        class="view-btn list-view"
+                        onclick="changeView('list')"
+                    >
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="active-filters" id="activeFilters"></div>
+        </section>
+
+        <section class="product-container">
+            <div class="product-grid" id="productGrid">
+                <!-- Product cards will be populated here -->
+            </div>
+
+            <div class="empty-state" id="emptyState">
+                <i class="fas fa-search"></i>
+                <h3>No products found</h3>
+                <p>
+                    We couldn't find any products matching your search criteria.
+                    Try adjusting your filters or search term.
+                </p>
+                <button class="reset-filters" onclick="resetFilters()">
+                    Reset Filters
+                </button>
+            </div>
+
+            <div class="view-btn-container">
+                <button
+                    class="load-more"
+                    id="loadMoreBtn"
+                    onclick="loadMoreProducts()"
+                >
+                    Load More
+                </button>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Customo Shopy</h3>
+                    <p>
+                        Customo Shopy is your premier destination for
+                        customizable fashion. We offer a wide range of products
+                        that can be personalized to your exact specifications.
+                    </p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"
+                            ><i class="fab fa-facebook-f"></i
+                        ></a>
+                        <a href="#" class="social-icon"
+                            ><i class="fab fa-twitter"></i
+                        ></a>
+                        <a href="#" class="social-icon"
+                            ><i class="fab fa-instagram"></i
+                        ></a>
+                        <a href="#" class="social-icon"
+                            ><i class="fab fa-pinterest"></i
+                        ></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="watches.html">Watches</a></li>
+                        <li><a href="shoes.html">Shoes</a></li>
+                        <li><a href="accessories.html">Accessories</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">My Account</a></li>
+                        <li><a href="#">Order History</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Newsletter</h3>
+                    <p>
+                        Subscribe to our newsletter to receive updates on new
+                        products, special offers, and exclusive content.
+                    </p>
+                    <form class="newsletter-form">
+                        <input
+                            type="email"
+                            class="newsletter-input"
+                            placeholder="Your email address"
+                            required
+                        />
+                        <button type="submit" class="newsletter-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Customo Shopy. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <script>
+            // Define product data
+            const accessories = [
+                {
+                    id: "accessory1",
+                    name: "Pearl Necklace",
+                    category: "jewelry",
+                    price: 89.99,
+                    oldPrice: 109.99,
+                    description:
+                        "Elegant pearl necklace made with high-quality freshwater pearls. Perfect for formal occasions or adding a touch of class to any outfit.",
+                    image: "images/accessory1.jpg",
+                    colors: ["#f5f5f5", "#FFD700", "#C0C0C0"],
+                    rating: 4.8,
+                    reviewCount: 56,
+                    isNew: true,
+                    isSale: true,
+                    date: new Date("2023-10-01"),
+                },
+                {
+                    id: "accessory2",
+                    name: "Leather Tote Bag",
+                    category: "bags",
+                    price: 129.99,
+                    oldPrice: null,
+                    description:
+                        "Spacious genuine leather tote bag with plenty of compartments. Perfect for work or weekend outings. Features durable hardware and comfortable straps.",
+                    image: "images/accessory2.jpg",
+                    colors: ["#654321", "#000000", "#8B4513"],
+                    rating: 4.6,
+                    reviewCount: 42,
+                    isNew: false,
+                    isSale: false,
+                    date: new Date("2023-08-15"),
+                },
+                {
+                    id: "accessory3",
+                    name: "Fedora Hat",
+                    category: "hats",
+                    price: 59.99,
+                    oldPrice: 79.99,
+                    description:
+                        "Classic fedora hat crafted from premium wool felt. Features a leather band detail and a structured brim. Timeless and versatile for any season.",
+                    image: "images/accessory3.jpg",
+                    colors: ["#000000", "#D2B48C", "#808080"],
+                    rating: 4.5,
+                    reviewCount: 38,
+                    isNew: false,
+                    isSale: true,
+                    date: new Date("2023-05-20"),
+                },
+                {
+                    id: "accessory4",
+                    name: "Diamond Stud Earrings",
+                    category: "jewelry",
+                    price: 249.99,
+                    oldPrice: null,
+                    description:
+                        "Sparkling diamond stud earrings set in 14K white gold. These timeless pieces feature brilliant-cut diamonds that catch the light beautifully.",
+                    image: "images/accessory4.jpg",
+                    colors: ["#C0C0C0"],
+                    rating: 4.9,
+                    reviewCount: 72,
+                    isNew: false,
+                    isSale: false,
+                    date: new Date("2023-09-10"),
+                },
+                {
+                    id: "accessory5",
+                    name: "Crossbody Bag",
+                    category: "bags",
+                    price: 79.99,
+                    oldPrice: 99.99,
+                    description:
+                        "Versatile crossbody bag with adjustable strap. Made from durable synthetic leather with gold-tone hardware and multiple interior pockets.",
+                    image: "images/accessory5.jpg",
+                    colors: ["#000000", "#964B00", "#B87333"],
+                    rating: 4.4,
+                    reviewCount: 51,
+                    isNew: false,
+                    isSale: true,
+                    date: new Date("2023-07-12"),
+                },
+                {
+                    id: "accessory6",
+                    name: "Beanie Hat",
+                    category: "hats",
+                    price: 34.99,
+                    oldPrice: null,
+                    description:
+                        "Warm and stylish beanie hat made from premium knit fabric. Features a comfortable fit and classic design perfect for colder weather.",
+                    image: "images/accessory6.jpg",
+                    colors: ["#000000", "#808080", "#D3D3D3", "#A52A2A"],
+                    rating: 4.3,
+                    reviewCount: 27,
+                    isNew: true,
+                    isSale: false,
+                    date: new Date("2023-10-05"),
+                },
+                {
+                    id: "accessory7",
+                    name: "Silver Bracelet",
+                    category: "jewelry",
+                    price: 69.99,
+                    oldPrice: 89.99,
+                    description:
+                        "Elegant sterling silver bracelet with intricate design. Adjustable size to fit most wrists, perfect for daily wear or special occasions.",
+                    image: "images/accessory7.jpg",
+                    colors: ["#C0C0C0"],
+                    rating: 4.7,
+                    reviewCount: 45,
+                    isNew: false,
+                    isSale: true,
+                    date: new Date("2023-06-18"),
+                },
+                {
+                    id: "accessory8",
+                    name: "Laptop Backpack",
+                    category: "bags",
+                    price: 89.99,
+                    oldPrice: null,
+                    description:
+                        "Modern laptop backpack with padded compartment for laptops up to 15 inches. Includes multiple pockets for organization and padded straps for comfort.",
+                    image: "images/accessory8.jpg",
+                    colors: ["#000000", "#1560BD", "#808080"],
+                    rating: 4.8,
+                    reviewCount: 64,
+                    isNew: true,
+                    isSale: false,
+                    date: new Date("2023-09-25"),
+                },
+                {
+                    id: "accessory9",
+                    name: "Summer Straw Hat",
+                    category: "hats",
+                    price: 45.99,
+                    oldPrice: 59.99,
+                    description:
+                        "Wide-brimmed straw hat perfect for beach days and summer outings. Offers excellent sun protection while keeping you stylish and cool.",
+                    image: "images/accessory9.jpg",
+                    colors: ["#DEB887", "#F5DEB3"],
+                    rating: 4.5,
+                    reviewCount: 39,
+                    isNew: false,
+                    isSale: true,
+                    date: new Date("2023-04-15"),
+                },
+                {
+                    id: "accessory10",
+                    name: "Gold Hoop Earrings",
+                    category: "jewelry",
+                    price: 49.99,
+                    oldPrice: null,
+                    description:
+                        "Classic gold hoop earrings that complement any outfit. Made from high-quality gold-plated metal with secure closures for all-day wear.",
+                    image: "images/accessory10.jpg",
+                    colors: ["#FFD700"],
+                    rating: 4.6,
+                    reviewCount: 53,
+                    isNew: false,
+                    isSale: false,
+                    date: new Date("2023-07-30"),
+                },
+                {
+                    id: "accessory11",
+                    name: "Weekend Duffel Bag",
+                    category: "bags",
+                    price: 119.99,
+                    oldPrice: 149.99,
+                    description:
+                        "Spacious duffel bag perfect for weekend getaways. Features durable canvas construction, leather accents, and multiple compartments for organization.",
+                    image: "images/accessory11.jpg",
+                    colors: ["#000000", "#A0522D", "#1560BD"],
+                    rating: 4.7,
+                    reviewCount: 48,
+                    isNew: false,
+                    isSale: true,
+                    date: new Date("2023-05-10"),
+                },
+                {
+                    id: "accessory12",
+                    name: "Baseball Cap",
+                    category: "hats",
+                    price: 29.99,
+                    oldPrice: null,
+                    description:
+                        "Classic baseball cap with adjustable strap for the perfect fit. Made from cotton with embroidered detailing and breathable construction.",
+                    image: "images/accessory12.jpg",
+                    colors: ["#000000", "#DC143C", "#1560BD", "#808080"],
+                    rating: 4.4,
+                    reviewCount: 37,
+                    isNew: true,
+                    isSale: false,
+                    date: new Date("2023-10-08"),
+                },
+                {
+                    id: "accessory13",
+                    name: "Crystal Pendant Necklace",
+                    category: "jewelry",
+                    price: 59.99,
+                    oldPrice: 75.99,
+                    description:
+                        "Elegant crystal pendant necklace with a delicate chain. The pendant catches the light beautifully, adding sparkle to any outfit.",
+                    image: "images/accessory13.jpg",
+                    colors: ["#C0C0C0", "#FFD700"],
+                    rating: 4.8,
+                    reviewCount: 41,
+                    isNew: false,
+                    isSale: true,
+                    date: new Date("2023-08-05"),
+                },
+                {
+                    id: "accessory14",
+                    name: "Leather Messenger Bag",
+                    category: "bags",
+                    price: 159.99,
+                    oldPrice: null,
+                    description:
+                        "Professional leather messenger bag with padded laptop compartment. Features adjustable strap, multiple pockets, and premium hardware.",
+                    image: "images/accessory14.jpg",
+                    colors: ["#A0522D", "#000000", "#8B4513"],
+                    rating: 4.9,
+                    reviewCount: 57,
+                    isNew: true,
+                    isSale: false,
+                    date: new Date("2023-09-20"),
+                },
+                {
+                    id: "accessory15",
+                    name: "Bucket Hat",
+                    category: "hats",
+                    price: 39.99,
+                    oldPrice: 49.99,
+                    description:
+                        "Trendy bucket hat made from durable cotton material. Offers good sun protection and adds a stylish touch to casual outfits.",
+                    image: "images/accessory15.jpg",
+                    colors: ["#000000", "#F5DEB3", "#808080", "#1560BD"],
+                    rating: 4.3,
+                    reviewCount: 32,
+                    isNew: false,
+                    isSale: true,
+                    date: new Date("2023-06-25"),
+                },
+                {
+                    id: "accessory16",
+                    name: "Designer Sunglasses",
+                    category: "sunglasses",
+                    price: 179.99,
+                    oldPrice: 229.99,
+                    description:
+                        "Premium designer sunglasses with UV protection and polarized lenses. Features elegant frame design and comfortable fit.",
+                    image: "images/accessory16.jpg",
+                    colors: ["#000000", "#8B4513", "#1560BD"],
+                    rating: 4.7,
+                    reviewCount: 49,
+                    isNew: false,
+                    isSale: true,
+                    date: new Date("2023-05-15"),
+                },
+                {
+                    id: "accessory17",
+                    name: "Leather Belt",
+                    category: "belts",
+                    price: 69.99,
+                    oldPrice: null,
+                    description:
+                        "High-quality leather belt with classic buckle. Crafted from genuine leather that will develop a beautiful patina over time.",
+                    image: "images/accessory17.jpg",
+                    colors: ["#000000", "#8B4513", "#A0522D"],
+                    rating: 4.8,
+                    reviewCount: 51,
+                    isNew: true,
+                    isSale: false,
+                    date: new Date("2023-10-12"),
+                },
+                {
+                    id: "accessory18",
+                    name: "Sport Sunglasses",
+                    category: "sunglasses",
+                    price: 89.99,
+                    oldPrice: 109.99,
+                    description:
+                        "Performance sport sunglasses with impact-resistant lenses. Lightweight frame with non-slip nose pads and temple grips for secure fit during activities.",
+                    image: "images/accessory18.jpg",
+                    colors: ["#000000", "#1560BD", "#DC143C"],
+                    rating: 4.6,
+                    reviewCount: 43,
+                    isNew: false,
+                    isSale: true,
+                    date: new Date("2023-07-05"),
+                },
+            ];
+
+            // Global variables
+            let currentView = "grid";
+            let visibleProducts = 9; // Number of products to show initially
+            let filteredProducts = [...accessories]; // Start with all products
+            let appliedFilters = {
+                search: "",
+                category: "all",
+                price: "all",
+                sort: "default",
+            };
+
+            // DOM elements
+            const productGrid = document.getElementById("productGrid");
+            const emptyState = document.getElementById("emptyState");
+            const loadMoreBtn = document.getElementById("loadMoreBtn");
+            const activeFiltersContainer =
+                document.getElementById("activeFilters");
+            const filterSection = document.getElementById("filterSection");
+
+            // Initialize the page
+            window.onload = function () {
+                renderProducts();
+
+                // Add scroll listener for filter section
+                window.addEventListener("scroll", function () {
+                    if (window.scrollY > 100) {
+                        filterSection.classList.add("scrolled");
+                    } else {
+                        filterSection.classList.remove("scrolled");
+                    }
+                });
+            };
+
+            // Function to change view (grid/list)
+            function changeView(view) {
+                currentView = view;
+
+                // Update active button
+                document
+                    .querySelector(".grid-view")
+                    .classList.toggle("active", view === "grid");
+                document
+                    .querySelector(".list-view")
+                    .classList.toggle("active", view === "list");
+
+                // Update grid class
+                productGrid.classList.toggle("list-view", view === "list");
+
+                // Re-render products to adjust layout
+                renderProducts();
+            }
+
+            // Function to filter products
+            function filterProducts() {
+                // Get filter values
+                const searchTerm = document
+                    .getElementById("searchBox")
+                    .value.toLowerCase();
+                const category =
+                    document.getElementById("categoryFilter").value;
+                const priceRange = document.getElementById("priceFilter").value;
+                const sortBy = document.getElementById("sortFilter").value;
+
+                // Update applied filters
+                appliedFilters = {
+                    search: searchTerm,
+                    category: category,
+                    price: priceRange,
+                    sort: sortBy,
+                };
+
+                // Filter products
+                filteredProducts = accessories.filter((product) => {
+                    // Search filter
+                    const matchesSearch =
+                        product.name.toLowerCase().includes(searchTerm) ||
+                        product.description
+                            .toLowerCase()
+                            .includes(searchTerm) ||
+                        product.category.toLowerCase().includes(searchTerm);
+
+                    // Category filter
+                    const matchesCategory =
+                        category === "all" || product.category === category;
+
+                    // Price filter
+                    let matchesPrice = true;
+                    if (priceRange === "under50")
+                        matchesPrice = product.price < 50;
+                    else if (priceRange === "50to100")
+                        matchesPrice =
+                            product.price >= 50 && product.price <= 100;
+                    else if (priceRange === "100to200")
+                        matchesPrice =
+                            product.price > 100 && product.price <= 200;
+                    else if (priceRange === "over200")
+                        matchesPrice = product.price > 200;
+
+                    return matchesSearch && matchesCategory && matchesPrice;
+                });
+
+                // Sort products
+                sortProducts(sortBy);
+
+                // Reset visible products counter
+                visibleProducts = Math.min(9, filteredProducts.length);
+
+                // Render filtered products
+                renderProducts();
+
+                // Update active filters display
+                updateActiveFilters();
+            }
+
+            // Function to sort products
+            function sortProducts(sortBy) {
+                switch (sortBy) {
+                    case "low-high":
+                        filteredProducts.sort((a, b) => a.price - b.price);
+                        break;
+                    case "high-low":
+                        filteredProducts.sort((a, b) => b.price - a.price);
+                        break;
+                    case "newest":
+                        filteredProducts.sort((a, b) => b.date - a.date);
+                        break;
+                    case "rating":
+                        filteredProducts.sort((a, b) => b.rating - a.rating);
+                        break;
+                    default:
+                        // No sorting, keep original order
+                        filteredProducts = filteredProducts.sort(
+                            (a, b) =>
+                                accessories.indexOf(a) - accessories.indexOf(b),
+                        );
+                }
+            }
+
+            // Function to update active filters display
+            function updateActiveFilters() {
+                activeFiltersContainer.innerHTML = "";
+
+                if (appliedFilters.search) {
+                    const searchTag = createFilterTag(
+                        `Search: ${appliedFilters.search}`,
+                        "search",
+                    );
+                    activeFiltersContainer.appendChild(searchTag);
+                }
+
+                if (appliedFilters.category !== "all") {
+                    const categoryName =
+                        document.getElementById("categoryFilter").options[
+                            document.getElementById("categoryFilter")
+                                .selectedIndex
+                        ].text;
+                    const categoryTag = createFilterTag(
+                        `Category: ${categoryName}`,
+                        "category",
+                    );
+                    activeFiltersContainer.appendChild(categoryTag);
+                }
+
+                if (appliedFilters.price !== "all") {
+                    const priceName =
+                        document.getElementById("priceFilter").options[
+                            document.getElementById("priceFilter").selectedIndex
+                        ].text;
+                    const priceTag = createFilterTag(
+                        `Price: ${priceName}`,
+                        "price",
+                    );
+                    activeFiltersContainer.appendChild(priceTag);
+                }
+
+                if (appliedFilters.sort !== "default") {
+                    const sortName =
+                        document.getElementById("sortFilter").options[
+                            document.getElementById("sortFilter").selectedIndex
+                        ].text;
+                    const sortTag = createFilterTag(
+                        `Sort: ${sortName}`,
+                        "sort",
+                    );
+                    activeFiltersContainer.appendChild(sortTag);
+                }
+            }
+
+            // Function to create filter tag element
+            function createFilterTag(text, type) {
+                const tag = document.createElement("div");
+                tag.className = "filter-tag";
+                tag.innerHTML = `${text} <i class="fas fa-times"></i>`;
+
+                tag.querySelector("i").addEventListener("click", function () {
+                    removeFilter(type);
+                });
+
+                return tag;
+            }
+
+            // Function to remove a filter
+            function removeFilter(type) {
+                if (type === "search") {
+                    document.getElementById("searchBox").value = "";
+                    appliedFilters.search = "";
+                } else if (type === "category") {
+                    document.getElementById("categoryFilter").value = "all";
+                    appliedFilters.category = "all";
+                } else if (type === "price") {
+                    document.getElementById("priceFilter").value = "all";
+                    appliedFilters.price = "all";
+                } else if (type === "sort") {
+                    document.getElementById("sortFilter").value = "default";
+                    appliedFilters.sort = "default";
+                }
+
+                filterProducts();
+            }
+
+            // Function to reset all filters
+            function resetFilters() {
+                document.getElementById("searchBox").value = "";
+                document.getElementById("categoryFilter").value = "all";
+                document.getElementById("priceFilter").value = "all";
+                document.getElementById("sortFilter").value = "default";
+
+                appliedFilters = {
+                    search: "",
+                    category: "all",
+                    price: "all",
+                    sort: "default",
+                };
+
+                filteredProducts = [...accessories];
+                visibleProducts = 9;
+                renderProducts();
+                updateActiveFilters();
+            }
+
+            // Function to render products
+            function renderProducts() {
+                productGrid.innerHTML = "";
+
+                if (filteredProducts.length === 0) {
+                    // Show empty state
+                    emptyState.style.display = "block";
+                    loadMoreBtn.style.display = "none";
+                    return;
+                }
+
+                // Hide empty state
+                emptyState.style.display = "none";
+
+                // Show/hide load more button
+                loadMoreBtn.style.display =
+                    filteredProducts.length > visibleProducts
+                        ? "block"
+                        : "none";
+
+                // Render visible products
+                for (
+                    let i = 0;
+                    i < Math.min(visibleProducts, filteredProducts.length);
+                    i++
+                ) {
+                    const product = filteredProducts[i];
+                    const productCard = createProductCard(product);
+                    productGrid.appendChild(productCard);
+                }
+            }
+
+            // Function to create product card
+            function createProductCard(product) {
+                const card = document.createElement("div");
+                card.className = "product-card";
+                card.setAttribute("data-id", product.id);
+
+                // Create badge HTML if needed
+                let badgeHTML = "";
+                if (product.isNew) {
+                    badgeHTML = `<div class="product-badge badge-new">New</div>`;
+                } else if (product.isSale) {
+                    badgeHTML = `<div class="product-badge badge-sale">Sale</div>`;
+                }
+
+                // Create colors HTML
+                let colorsHTML = "";
+                product.colors.forEach((color) => {
+                    colorsHTML += `<div class="color-option" style="background-color: ${color}"></div>`;
+                });
+
+                // Create price HTML
+                let priceHTML = "";
+                if (product.oldPrice) {
+                    priceHTML = `
+                               <div class="product-price">$${product.price.toFixed(2)}</div>
+                               <div class="product-price-old">$${product.oldPrice.toFixed(2)}</div>
+                           `;
+                } else {
+                    priceHTML = `<div class="product-price">$${product.price.toFixed(2)}</div>`;
+                }
+
+                // Create stars for ratings
+                const fullStars = Math.floor(product.rating);
+                const hasHalfStar = product.rating % 1 >= 0.5;
+
+                let starsHTML = "";
+                for (let i = 0; i < 5; i++) {
+                    if (i < fullStars) {
+                        starsHTML += '<i class="fas fa-star"></i>';
+                    } else if (i === fullStars && hasHalfStar) {
+                        starsHTML += '<i class="fas fa-star-half-alt"></i>';
+                    } else {
+                        starsHTML += '<i class="far fa-star"></i>';
+                    }
+                }
+
+                card.innerHTML = `
+                           <div class="product-image">
+                               <img src="${product.image}" alt="${product.name}">
+                               ${badgeHTML}
+                               <div class="product-actions">
+                                   <button class="action-btn wishlist" onclick="toggleWishlist(this)">
+                                       <i class="far fa-heart"></i>
+                                   </button>
+                                   <button class="action-btn quick-view" onclick="quickView('${product.id}')">
+                                       <i class="far fa-eye"></i>
+                                   </button>
+                               </div>
+                           </div>
+                           <div class="product-info-container">
+                               <div class="product-name">${product.name}</div>
+                               <div class="product-category">${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</div>
+                               <div class="product-description">${product.description}</div>
+                               <div class="product-price-container">
+                                   ${priceHTML}
+                                   <div class="product-rating">
+                                       <div class="rating-stars">${starsHTML}</div>
+                                       <div class="rating-count">(${product.reviewCount})</div>
+                                   </div>
+                               </div>
+                           </div>
+                           <div class="product-bottom">
+                               <div class="product-colors">
+                                   ${colorsHTML}
+                               </div>
+                               <button class="action-btn add-to-cart" onclick="addToCart('${product.id}')">
+                                   <i class="fas fa-shopping-cart"></i>
+                               </button>
+                           </div>
+                       `;
+
+                // Add click event to navigate to product details
+                card.addEventListener("click", function (e) {
+                    // Don't navigate if the user clicked on a button
+                    if (!e.target.closest("button")) {
+                        navigateToProduct(product.id);
+                    }
+                });
+
+                return card;
+            }
+
+            // Function to load more products
+            function loadMoreProducts() {
+                visibleProducts += 9;
+                if (visibleProducts >= filteredProducts.length) {
+                    visibleProducts = filteredProducts.length;
+                    loadMoreBtn.style.display = "none";
+                }
+                renderProducts();
+            }
+
+            // Function to navigate to product details
+            function navigateToProduct(id) {
+                window.location.href = `accessory-details.html?id=${id}`;
+            }
+
+            // Function to toggle wishlist
+            function toggleWishlist(button) {
+                button.classList.toggle("wishlist-active");
+
+                if (button.classList.contains("wishlist-active")) {
+                    button.innerHTML = '<i class="fas fa-heart"></i>';
+                } else {
+                    button.innerHTML = '<i class="far fa-heart"></i>';
+                }
+
+                // Prevent event bubbling
+                event.stopPropagation();
+            }
+
+            // Function for quick view
+            function quickView(id) {
+                alert(`Quick view for product ${id} would open a modal here`);
+
+                // Prevent event bubbling
+                event.stopPropagation();
+            }
+
+            // Function to add to cart
+            function addToCart(id) {
+                alert(`Product ${id} added to cart!`);
+
+                // Prevent event bubbling
+                event.stopPropagation();
+            }
+        </script>
+    </body>
+</html>

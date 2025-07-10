@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Shoe Details - Customo Shopy</title>
+        <style>
+            /* Global styles */
+            body {
+                font-family: "Segoe UI", sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f8f9fa;
+                color: #333;
+                line-height: 1.6;
+            }
+
+            /* Header and Navigation */
+            header {
+                background-color: #1d3557;
+                color: white;
+                padding: 15px 30px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            .logo h1 {
+                margin: 0;
+                font-size: 24px;
+            }
+
+            nav ul {
+                display: flex;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                gap: 20px;
+            }
+
+            nav ul li a {
+                color: white;
+                text-decoration: none;
+                font-size: 16px;
+                padding: 8px 12px;
+                border-radius: 4px;
+                transition: all 0.3s ease;
+            }
+
+            nav ul li a:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+            .cart a {
+                color: white;
+                text-decoration: none;
+            }
+
+            /* Main content styles */
+            .product-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                max-width: 1200px;
+                margin: 50px auto;
+                padding: 20px;
+                background-color: #fff;
+                border-radius: 12px;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .product-image {
+                flex: 1;
+                min-width: 300px;
+                max-width: 500px;
+                padding: 20px;
+            }
+
+            .product-image img {
+                width: 100%;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease;
+            }
+
+            .product-image img:hover {
+                transform: scale(1.02);
+            }
+
+            .product-info {
+                flex: 1;
+                min-width: 300px;
+                padding: 30px;
+            }
+
+            .price {
+                font-size: 24px;
+                font-weight: bold;
+                color: #e63946;
+                margin: 15px 0;
+                display: inline-block;
+                padding: 5px 12px;
+                background-color: rgba(230, 57, 70, 0.1);
+                border-radius: 20px;
+            }
+
+            .product-description {
+                line-height: 1.8;
+                margin-bottom: 25px;
+                color: #333;
+                font-size: 16px;
+                background-color: #f9f9fa;
+                padding: 15px;
+                border-radius: 8px;
+                border-left: 3px solid #457b9d;
+            }
+
+            /* Size selector */
+            .size-selector {
+                margin: 20px 0;
+                background-color: #f8f9fa;
+                padding: 15px;
+                border-radius: 8px;
+                border: 1px solid #e1e1e1;
+            }
+
+            .size-selector label {
+                font-weight: 600;
+                color: #1d3557;
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            .size-selector select {
+                padding: 10px 15px;
+                width: 100%;
+                max-width: 200px;
+                border-radius: 6px;
+                border: 1px solid #ddd;
+                font-size: 16px;
+                outline: none;
+                transition: all 0.3s ease;
+            }
+
+            .size-selector select:focus {
+                border-color: #457b9d;
+                box-shadow: 0 0 0 2px rgba(69, 123, 157, 0.1);
+            }
+
+            /* Color selector */
+            .color-options {
+                display: flex;
+                gap: 12px;
+                margin: 20px 0;
+            }
+
+            .color-option {
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+                cursor: pointer;
+                border: 2px solid transparent;
+                transition: all 0.3s ease;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .color-option:hover,
+            .color-option.selected {
+                transform: scale(1.1);
+                box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+            }
+
+            .color-option.selected {
+                border-color: #1d3557;
+            }
+
+            /* Action buttons */
+            .initial-options {
+                display: flex;
+                gap: 15px;
+                margin: 25px 0;
+            }
+
+            .customize-btn,
+            .browse-btn {
+                flex: 1;
+                padding: 15px 25px;
+                font-size: 16px;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .customize-btn {
+                background-color: #4caf50;
+                color: white;
+            }
+
+            .browse-btn {
+                background-color: #3498db;
+                color: white;
+            }
+
+            .customize-btn:hover,
+            .browse-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            }
+
+            /* Designer options */
+            .designer-options {
+                display: none;
+                margin: 25px 0;
+                border: 1px solid #e1e1e1;
+                padding: 25px;
+                border-radius: 12px;
+                background-color: #f8f9fa;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            }
+
+            .designer-options h3 {
+                margin-top: 0;
+                margin-bottom: 20px;
+                color: #1d3557;
+                text-align: center;
+                font-size: 20px;
+                font-weight: 600;
+            }
+
+            .designers-list {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .designer-card {
+                border: 1px solid #eee;
+                padding: 20px;
+                border-radius: 10px;
+                text-align: center;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                background-color: white;
+            }
+
+            .designer-card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                border-color: #4caf50;
+            }
+
+            .designer-card img {
+                width: 90px;
+                height: 90px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-bottom: 15px;
+                border: 3px solid #f0f0f0;
+            }
+
+            .designer-card h4 {
+                margin: 10px 0;
+                color: #1d3557;
+                font-size: 18px;
+            }
+
+            .designer-card p {
+                margin: 5px 0;
+                font-size: 14px;
+                color: #666;
+            }
+
+            /* Standard buttons */
+            .action-buttons {
+                display: none;
+                flex-wrap: wrap;
+                gap: 15px;
+                margin-top: 25px;
+            }
+
+            .action-buttons button {
+                flex: 1;
+                padding: 14px 24px;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-weight: bold;
+                transition: all 0.3s ease;
+                min-width: 140px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .buy-now {
+                background-color: #e63946;
+                color: white;
+            }
+
+            .add-to-cart {
+                background-color: #457b9d;
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .action-buttons button:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            }
+
+            /* Features section */
+            .features {
+                margin-top: 30px;
+                background-color: #f8f9fa;
+                padding: 20px;
+                border-radius: 8px;
+                border: 1px solid #e1e1e1;
+            }
+
+            .features h3 {
+                color: #1d3557;
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+                border-bottom: 2px solid #e1e1e1;
+                position: relative;
+            }
+
+            .features h3::after {
+                content: "";
+                position: absolute;
+                bottom: -2px;
+                left: 0;
+                width: 60px;
+                height: 2px;
+                background-color: #1d3557;
+            }
+
+            .features ul {
+                padding-left: 20px;
+            }
+
+            .features li {
+                margin-bottom: 10px;
+                position: relative;
+                padding-left: 5px;
+            }
+
+            .features li::before {
+                content: "✓";
+                color: #4caf50;
+                position: absolute;
+                left: -20px;
+                font-weight: bold;
+            }
+
+            /* Footer */
+            footer {
+                background-color: #1d3557;
+                color: white;
+                padding: 30px 0;
+                margin-top: 50px;
+            }
+
+            .footer-content {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
+            }
+
+            .footer-section {
+                flex: 1;
+                min-width: 250px;
+                margin-bottom: 20px;
+                padding: 0 15px;
+            }
+
+            .footer-section h3 {
+                margin-bottom: 15px;
+            }
+
+            .footer-section ul {
+                list-style: none;
+                padding: 0;
+            }
+
+            .footer-section ul li {
+                margin-bottom: 8px;
+            }
+
+            .footer-section ul li a {
+                color: #ddd;
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+
+            .footer-section ul li a:hover {
+                color: white;
+            }
+
+            .footer-bottom {
+                text-align: center;
+                padding-top: 20px;
+                margin-top: 20px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            /* Responsive design */
+            @media (max-width: 768px) {
+                .product-container {
+                    flex-direction: column;
+                    margin: 20px;
+                }
+
+                .product-image,
+                .product-info {
+                    min-width: 100%;
+                }
+
+                .designers-list {
+                    grid-template-columns: 1fr;
+                }
+
+                .initial-options {
+                    flex-direction: column;
+                }
+
+                .footer-content {
+                    flex-direction: column;
+                    text-align: center;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <h1>Customo Shopy</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="index.html#designers">Designers</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                </ul>
+            </nav>
+            <div class="cart">
+                <a href="cart.html">🛒 Cart (0)</a>
+            </div>
+        </header>
+
+        <div class="product-container">
+            <div class="product-image">
+                <img id="productImage" src="" alt="Shoe Image" />
+            </div>
+            <div class="product-info">
+                <h2 id="productTitle">Loading...</h2>
+                <div class="price" id="productPrice">$0.00</div>
+                <div class="product-description" id="productDescription">
+                    Loading...
+                </div>
+
+                <div class="size-selector">
+                    <label for="size">Size:</label>
+                    <select id="size">
+                        <option value="7">US 7</option>
+                        <option value="7.5">US 7.5</option>
+                        <option value="8">US 8</option>
+                        <option value="8.5">US 8.5</option>
+                        <option value="9">US 9</option>
+                        <option value="9.5">US 9.5</option>
+                        <option value="10">US 10</option>
+                        <option value="10.5">US 10.5</option>
+                        <option value="11">US 11</option>
+                        <option value="11.5">US 11.5</option>
+                        <option value="12">US 12</option>
+                    </select>
+                </div>
+
+                <div class="color-options">
+                    <div
+                        class="color-option selected"
+                        style="background-color: black"
+                        onclick="changeColor('Black', this)"
+                    ></div>
+                    <div
+                        class="color-option"
+                        style="background-color: white; border: 1px solid #ddd"
+                        onclick="changeColor('White', this)"
+                    ></div>
+                    <div
+                        class="color-option"
+                        style="background-color: #e63946"
+                        onclick="changeColor('Red', this)"
+                    ></div>
+                    <div
+                        class="color-option"
+                        style="background-color: #457b9d"
+                        onclick="changeColor('Blue', this)"
+                    ></div>
+                </div>
+
+                <div class="initial-options">
+                    <button class="customize-btn" onclick="showDesigners()">
+                        Customize
+                    </button>
+                    <button class="browse-btn" onclick="browseProducts()">
+                        Browse
+                    </button>
+                </div>
+
+                <div id="designer-options" class="designer-options">
+                    <h3>Choose a Designer for Customization</h3>
+                    <div class="designers-list">
+                        <div
+                            class="designer-card"
+                            onclick="selectDesigner('designer1')"
+                        >
+                            <img src="images/designer1.jpg" alt="Designer 1" />
+                            <h4>Marcus Jordan</h4>
+                            <p>Streetwear & urban sneakers</p>
+                        </div>
+                        <div
+                            class="designer-card"
+                            onclick="selectDesigner('designer2')"
+                        >
+                            <img src="images/designer2.jpg" alt="Designer 2" />
+                            <h4>Alicia Kim</h4>
+                            <p>Athletic performance design</p>
+                        </div>
+                        <div
+                            class="designer-card"
+                            onclick="selectDesigner('designer3')"
+                        >
+                            <img src="images/designer3.jpg" alt="Designer 3" />
+                            <h4>David Martinez</h4>
+                            <p>Custom prints & patterns</p>
+                        </div>
+                        <div
+                            class="designer-card"
+                            onclick="selectDesigner('designer4')"
+                        >
+                            <img src="images/designer4.jpg" alt="Designer 4" />
+                            <h4>James Wilson</h4>
+                            <p>Fashion-forward collaborations</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="action-buttons" class="action-buttons">
+                    <button class="buy-now" onclick="buyNow()">Buy Now</button>
+                    <button class="add-to-cart" onclick="addToCart()">
+                        Add to Cart
+                    </button>
+                </div>
+
+                <div class="features">
+                    <h3>Features</h3>
+                    <ul id="productFeatures">
+                        <li>Loading features...</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Customo Shopy</h3>
+                    <p>Personalized style, at your fingertips.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="index.html#designers">Designers</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@customoshopy.com</p>
+                    <p>Phone: (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2025 Customo Shopy. All rights reserved.
+            </div>
+        </footer>
+
+        <script>
+            // Product data for all shoes
+            const shoesData = {
+                shoe1: {
+                    title: "Air Zoom Alpha",
+                    price: "$129.99",
+                    image: "images/shoes1.jpg",
+                    description:
+                        "High-performance running shoes with responsive cushioning designed for maximum comfort during long runs. The breathable mesh upper keeps your feet cool, while the innovative sole technology provides superior impact absorption.",
+                    features: [
+                        "Breathable mesh upper",
+                        "Responsive cushioning",
+                        "Durable rubber outsole",
+                        "Lightweight design (9.5 oz)",
+                        "Heel support technology",
+                    ],
+                },
+                shoe2: {
+                    title: "Classic Leather",
+                    price: "$89.99",
+                    image: "images/shoes2.jpg",
+                    description:
+                        "Premium leather shoes perfect for casual and formal wear. Crafted with genuine leather and featuring a timeless design that pairs well with both jeans and dress pants. The cushioned insole ensures all-day comfort.",
+                    features: [
+                        "Genuine leather upper",
+                        "Memory foam insole",
+                        "Flexible construction",
+                        "Stain-resistant finish",
+                        "Classic design elements",
+                    ],
+                },
+                shoe3: {
+                    title: "Sport Pro Max",
+                    price: "$149.99",
+                    image: "images/shoes3.jpg",
+                    description:
+                        "Designed for intense workouts and maximum agility. These shoes feature advanced stability control and responsive cushioning to support dynamic movements. The reinforced heel and toe areas add durability for high-impact activities.",
+                    features: [
+                        "Multi-directional traction pattern",
+                        "Shock-absorbing midsole",
+                        "Stability control system",
+                        "Reinforced toe cap",
+                        "Quick-dry lining material",
+                    ],
+                },
+                shoe4: {
+                    title: "Oxford Elite",
+                    price: "$159.99",
+                    image: "images/shoes4.jpg",
+                    description:
+                        "Premium Oxford shoes crafted for the modern professional. Features high-quality leather construction and expert craftsmanship for a sophisticated look and lasting comfort.",
+                    features: [
+                        "Full-grain leather upper",
+                        "Goodyear welt construction",
+                        "Leather lining",
+                        "Cushioned footbed",
+                        "Hand-finished details",
+                    ],
+                },
+                shoe5: {
+                    title: "Urban Walker",
+                    price: "$79.99",
+                    image: "images/shoes5.jpg",
+                    description:
+                        "Casual walking shoes designed for everyday comfort. Perfect for city exploration and daily wear with its lightweight construction and modern styling.",
+                    features: [
+                        "Breathable canvas upper",
+                        "Memory foam insole",
+                        "Flexible rubber sole",
+                        "Moisture-wicking lining",
+                        "Padded collar and tongue",
+                    ],
+                },
+                shoe6: {
+                    title: "Runner Pro",
+                    price: "$119.99",
+                    image: "images/shoes6.jpg",
+                    description:
+                        "Professional running shoes engineered for speed and stability. Features advanced cushioning technology and lightweight materials for optimal performance.",
+                    features: [
+                        "Dynamic mesh upper",
+                        "Energy-return cushioning",
+                        "Stabilizing heel counter",
+                        "Reflective details",
+                        "Race-ready design",
+                    ],
+                },
+                shoe7: {
+                    title: "Daily Comfort",
+                    price: "$69.99",
+                    image: "images/shoes7.jpg",
+                    description:
+                        "Comfortable everyday shoes that combine style with practicality. Perfect for casual wear with its soft materials and supportive design.",
+                    features: [
+                        "Soft textile upper",
+                        "Cushioned midsole",
+                        "Non-marking outsole",
+                        "Breathable design",
+                        "Easy-care materials",
+                    ],
+                },
+                shoe8: {
+                    title: "Business Pro",
+                    price: "$139.99",
+                    image: "images/shoes8.jpg",
+                    description:
+                        "Classic business shoes with modern comfort features. Ideal for professional settings while ensuring all-day comfort.",
+                    features: [
+                        "Premium leather construction",
+                        "Cushioned insole",
+                        "Breathable lining",
+                        "Durable outsole",
+                        "Professional styling",
+                    ],
+                },
+                shoe9: {
+                    title: "Trail Blazer",
+                    price: "$109.99",
+                    image: "images/shoes9.jpg",
+                    description:
+                        "Rugged trail running shoes built for outdoor adventures. Features excellent grip and durability for challenging terrain.",
+                    features: [
+                        "Water-resistant upper",
+                        "Aggressive trail grip",
+                        "Rock protection plate",
+                        "Quick-lace system",
+                        "Debris protection",
+                    ],
+                },
+                shoe10: {
+                    title: "Street Style",
+                    price: "$89.99",
+                    image: "images/shoes10.jpg",
+                    description:
+                        "Trendy street-style sneakers that combine fashion with function. Perfect for urban exploration and casual outings.",
+                    features: [
+                        "Mixed material upper",
+                        "Comfort footbed",
+                        "Stylish design",
+                        "Durable construction",
+                        "Versatile styling",
+                    ],
+                },
+                shoe11: {
+                    title: "Fitness Max",
+                    price: "$129.99",
+                    image: "images/shoes11.jpg",
+                    description:
+                        "Versatile training shoes designed for various workout styles. Provides stability and support for gym sessions and fitness classes.",
+                    features: [
+                        "Multi-purpose design",
+                        "Stable platform",
+                        "Enhanced grip",
+                        "Ventilation zones",
+                        "Support structure",
+                    ],
+                },
+                shoe12: {
+                    title: "Leather Loafer",
+                    price: "$99.99",
+                    image: "images/shoes12.jpg",
+                    description:
+                        "Classic loafers crafted from premium leather. Perfect for business casual settings with timeless style.",
+                    features: [
+                        "Genuine leather",
+                        "Slip-on design",
+                        "Comfort lining",
+                        "Flexible sole",
+                        "Classic styling",
+                    ],
+                },
+                shoe13: {
+                    title: "Canvas Casual",
+                    price: "$59.99",
+                    image: "images/shoes13.jpg",
+                    description:
+                        "Lightweight canvas shoes perfect for casual wear. Features a comfortable design and easy-going style.",
+                    features: [
+                        "Canvas construction",
+                        "Rubber sole",
+                        "Padded insole",
+                        "Breathable design",
+                        "Classic look",
+                    ],
+                },
+                shoe14: {
+                    title: "Sprint Elite",
+                    price: "$139.99",
+                    image: "images/shoes14.jpg",
+                    description:
+                        "High-performance sprint shoes designed for speed. Features lightweight construction and responsive cushioning.",
+                    features: [
+                        "Lightweight design",
+                        "Sprint spike plate",
+                        "Aerodynamic shape",
+                        "Competition ready",
+                        "Superior traction",
+                    ],
+                },
+                shoe15: {
+                    title: "Everyday Comfort",
+                    price: "$79.99",
+                    image: "images/shoes15.jpg",
+                    description:
+                        "Comfortable everyday shoes designed for regular wear. Combines casual style with all-day comfort.",
+                    features: [
+                        "Comfortable fit",
+                        "Durable materials",
+                        "Cushioned sole",
+                        "Versatile design",
+                        "Easy maintenance",
+                    ],
+                },
+            };
+
+            // Global variable for selected color
+            let selectedColor = "Black";
+
+            // Function to load product details
+            function loadProductDetails() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const id = urlParams.get("id") || "shoe1";
+
+                const product = shoesData[id];
+                if (product) {
+                    document.getElementById("productImage").src = product.image;
+                    document.getElementById("productTitle").textContent =
+                        product.title;
+                    document.getElementById("productPrice").textContent =
+                        product.price;
+                    document.getElementById("productDescription").textContent =
+                        product.description;
+
+                    // Update features
+                    const featuresList =
+                        document.getElementById("productFeatures");
+                    featuresList.innerHTML = product.features
+                        .map((feature) => `<li>${feature}</li>`)
+                        .join("");
+                }
+            }
+
+            // Function to change color
+            function changeColor(color, element) {
+                selectedColor = color;
+                document.querySelectorAll(".color-option").forEach((option) => {
+                    option.classList.remove("selected");
+                });
+                element.classList.add("selected");
+            }
+
+            // Function to show designers
+            function showDesigners() {
+                document.getElementById("designer-options").style.display =
+                    "block";
+                document.querySelector(".initial-options").style.display =
+                    "none";
+            }
+
+            // Function to show browse options
+            function browseProducts() {
+                document.getElementById("action-buttons").style.display =
+                    "flex";
+                document.querySelector(".initial-options").style.display =
+                    "none";
+            }
+
+            // Function to select designer
+            function selectDesigner(designerId) {
+                const urlParams = new URLSearchParams(window.location.search);
+                const productId = urlParams.get("id") || "shoe1";
+                window.location.href = `customize-shoe.html?product=${productId}&designer=${designerId}&color=${selectedColor}&size=${document.getElementById("size").value}`;
+            }
+
+            // Cart functions
+            function addToCart() {
+                const size = document.getElementById("size").value;
+                const productName =
+                    document.getElementById("productTitle").textContent;
+                alert(
+                    `Added to cart: ${productName} - Size: US ${size}, Color: ${selectedColor}`,
+                );
+            }
+
+            function buyNow() {
+                const size = document.getElementById("size").value;
+                const productName =
+                    document.getElementById("productTitle").textContent;
+                alert(
+                    `Proceeding to checkout: ${productName} - Size: US ${size}, Color: ${selectedColor}`,
+                );
+            }
+
+            // Load product details when page loads
+            window.onload = loadProductDetails;
+        </script>
+    </body>
+</html>

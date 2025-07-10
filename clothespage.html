@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Clothes Collection - Customo Shopy</title>
+        <style>
+            body {
+                font-family: "Segoe UI", sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f8f9fa;
+                color: #333;
+                line-height: 1.6;
+            }
+
+            /* Header and Navigation */
+            header {
+                background-color: #1d3557;
+                color: white;
+                padding: 15px 30px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            .logo h1 {
+                margin: 0;
+                font-size: 24px;
+            }
+
+            nav ul {
+                display: flex;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                gap: 20px;
+            }
+
+            nav ul li a {
+                color: white;
+                text-decoration: none;
+                font-size: 16px;
+                padding: 8px 12px;
+                border-radius: 4px;
+                transition: all 0.3s ease;
+            }
+
+            nav ul li a:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+            .cart a {
+                color: white;
+                text-decoration: none;
+            }
+
+            /* Filters Section */
+            .filters {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                padding: 15px;
+                background-color: #fff;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                flex-wrap: wrap;
+            }
+
+            .filters select,
+            .filters input[type="text"] {
+                padding: 8px 12px;
+                font-size: 16px;
+                border-radius: 6px;
+                border: 1px solid #ccc;
+                outline: none;
+                min-width: 150px;
+            }
+
+            .filters select:focus,
+            .filters input[type="text"]:focus {
+                border-color: #1d3557;
+                box-shadow: 0 0 0 2px rgba(29, 53, 87, 0.1);
+            }
+
+            /* Product Grid */
+            .product-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 25px;
+                padding: 30px;
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+
+            .product {
+                background-color: white;
+                padding: 10px;
+                border-radius: 10px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                cursor: pointer;
+                transition: transform 0.3s;
+                overflow: hidden;
+            }
+
+            .product:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            .product img {
+                width: 100%;
+                height: 280px;
+                object-fit: cover;
+                border-radius: 8px;
+                transition: transform 0.3s ease;
+            }
+
+            .product:hover img {
+                transform: scale(1.05);
+            }
+
+            .product-info {
+                padding: 15px 10px 5px;
+                text-align: center;
+            }
+
+            .product-name {
+                margin: 0;
+                color: #1d3557;
+                font-size: 1.1em;
+                margin-bottom: 5px;
+            }
+
+            .product-price {
+                color: #e63946;
+                font-weight: bold;
+                margin: 5px 0;
+            }
+
+            .product-category {
+                color: #666;
+                font-size: 0.9em;
+            }
+
+            /* Footer */
+            .footer {
+                text-align: center;
+                padding: 30px;
+                background-color: #1d3557;
+                color: white;
+                margin-top: 50px;
+            }
+
+            .home-btn {
+                padding: 12px 24px;
+                font-size: 16px;
+                background-color: #e63946;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                margin: 10px 0;
+            }
+
+            .home-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            /* Responsive Design */
+            @media (max-width: 768px) {
+                .filters {
+                    flex-direction: column;
+                    padding: 10px;
+                }
+
+                .filters select,
+                .filters input[type="text"] {
+                    width: 100%;
+                }
+
+                .product-grid {
+                    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                    padding: 15px;
+                    gap: 15px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <h1>Customo Shopy</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="clothes.html" class="active">Clothes</a></li>
+                    <li><a href="shoes.html">Shoes</a></li>
+                    <li><a href="watches.html">Watches</a></li>
+                    <li><a href="accessories.html">Accessories</a></li>
+                </ul>
+            </nav>
+            <div class="cart">
+                <a href="cart.html">🛒 Cart (0)</a>
+            </div>
+        </header>
+
+        <div class="filters">
+            <input
+                type="text"
+                id="searchBar"
+                placeholder="Search clothes..."
+                oninput="filterProducts()"
+            />
+            <select id="categoryFilter" onchange="filterProducts()">
+                <option value="all">All Categories</option>
+                <option value="men">Men</option>
+                <option value="women">Women</option>
+                <option value="kids">Kids</option>
+            </select>
+            <select id="typeFilter" onchange="filterProducts()">
+                <option value="all">All Types</option>
+                <option value="shirts">Shirts</option>
+                <option value="pants">Pants</option>
+                <option value="dresses">Dresses</option>
+                <option value="jackets">Jackets</option>
+            </select>
+            <select id="sortFilter" onchange="filterProducts()">
+                <option value="default">Sort By</option>
+                <option value="low">Price: Low to High</option>
+                <option value="high">Price: High to Low</option>
+            </select>
+        </div>
+
+        <div class="product-grid" id="productGrid"></div>
+
+        <div class="footer">
+            <button
+                class="home-btn"
+                onclick="window.location.href='index.html'"
+            >
+                Back to Home
+            </button>
+            <p>&copy; 2025 Customo Shopy. All rights reserved.</p>
+            <p>
+                Discover your perfect style with our customizable clothing
+                collection.
+            </p>
+        </div>
+
+        <script>
+            const products = [
+                {
+                    id: "product1",
+                    name: "Designer T-Shirt",
+                    type: "shirts",
+                    category: "men",
+                    price: 49.99,
+                    img: "images/clothes1.jpg",
+                },
+                {
+                    id: "product2",
+                    name: "Denim Jacket",
+                    type: "jackets",
+                    category: "men",
+                    price: 89.99,
+                    img: "images/clothes2.jpg",
+                },
+                {
+                    id: "product3",
+                    name: "Summer Dress",
+                    type: "dresses",
+                    category: "women",
+                    price: 79.99,
+                    img: "images/clothes3.jpg",
+                },
+                {
+                    id: "product4",
+                    name: "Formal Suit",
+                    type: "suits",
+                    category: "men",
+                    price: 299.99,
+                    img: "images/clothes5.jpg",
+                },
+                {
+                    id: "product5",
+                    name: "Winter Jacket",
+                    type: "jackets",
+                    category: "women",
+                    price: 129.99,
+                    img: "images/clothes6.jpg",
+                },
+                {
+                    id: "product6",
+                    name: "Casual Pants",
+                    type: "pants",
+                    category: "men",
+                    price: 59.99,
+                    img: "images/clothes7.jpg",
+                },
+                {
+                    id: "product7",
+                    name: "Evening Gown",
+                    type: "dresses",
+                    category: "women",
+                    price: 199.99,
+                    img: "images/clothes8.jpg",
+                },
+                {
+                    id: "product8",
+                    name: "Kids Outfit",
+                    type: "sets",
+                    category: "kids",
+                    price: 45.99,
+                    img: "images/clothes9.jpg",
+                },
+            ];
+
+            function createProductCards(data) {
+                const grid = document.getElementById("productGrid");
+                grid.innerHTML = "";
+                data.forEach((product) => {
+                    const div = document.createElement("div");
+                    div.className = "product";
+                    div.onclick = () =>
+                        (window.location.href = `product-details.html?id=${product.id}`);
+                    div.innerHTML = `
+                    <img src="${product.img}" alt="${product.name}">
+                    <div class="product-info">
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-price">$${product.price}</p>
+                        <p class="product-category">${product.category} - ${product.type}</p>
+                    </div>
+                `;
+                    grid.appendChild(div);
+                });
+            }
+
+            function filterProducts() {
+                const search = document
+                    .getElementById("searchBar")
+                    .value.toLowerCase();
+                const category =
+                    document.getElementById("categoryFilter").value;
+                const type = document.getElementById("typeFilter").value;
+                const sort = document.getElementById("sortFilter").value;
+
+                let filtered = products.filter(
+                    (p) =>
+                        p.name.toLowerCase().includes(search) &&
+                        (category === "all" || p.category === category) &&
+                        (type === "all" || p.type === type),
+                );
+
+                if (sort === "low") {
+                    filtered.sort((a, b) => a.price - b.price);
+                } else if (sort === "high") {
+                    filtered.sort((a, b) => b.price - a.price);
+                }
+
+                createProductCards(filtered);
+            }
+
+            window.onload = () => createProductCards(products);
+        </script>
+    </body>
+</html>

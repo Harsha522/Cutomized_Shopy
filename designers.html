@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Our Designers - Customo Shopy</title>
+        <style>
+            /* Global Styles */
+            :root {
+                --primary-color: #1d3557;
+                --secondary-color: #457b9d;
+                --accent-color: #e63946;
+                --light-color: #f1faee;
+                --dark-color: #333;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Segoe UI", sans-serif;
+                line-height: 1.6;
+                background-color: #f8f9fa;
+            }
+
+            /* Header & Navigation Styles (matching index.html) */
+            header {
+                background-color: var(--primary-color);
+                color: white;
+                padding: 1rem 5%;
+                position: sticky;
+                top: 0;
+                z-index: 100;
+            }
+
+            header h1 {
+                margin-bottom: 1rem;
+                text-align: center;
+            }
+
+            nav ul {
+                list-style: none;
+                display: flex;
+                justify-content: center;
+                gap: 2rem;
+            }
+
+            nav ul li a {
+                color: white;
+                text-decoration: none;
+                padding: 0.5rem 1rem;
+                border-radius: 4px;
+                transition: background-color 0.3s;
+            }
+
+            nav ul li a:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+
+            /* Designer Page Specific Styles */
+            .page-title {
+                text-align: center;
+                padding: 3rem 1rem;
+                background-color: var(--light-color);
+                margin-bottom: 2rem;
+            }
+
+            .page-title h1 {
+                font-size: 2.5rem;
+                color: var(--primary-color);
+                margin-bottom: 1rem;
+            }
+
+            .page-title p {
+                color: var(--secondary-color);
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            /* Category Filter Styles */
+            .category-filter {
+                display: flex;
+                justify-content: center;
+                gap: 1rem;
+                margin: 2rem 0;
+                flex-wrap: wrap;
+                padding: 0 5%;
+            }
+
+            .category-btn {
+                padding: 0.8rem 1.5rem;
+                border: none;
+                border-radius: 25px;
+                background-color: white;
+                color: var(--dark-color);
+                cursor: pointer;
+                transition: all 0.3s;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .category-btn:hover,
+            .category-btn.active {
+                background-color: var(--primary-color);
+                color: white;
+                transform: translateY(-2px);
+            }
+
+            /* Designers Grid */
+            .designers-container {
+                padding: 2rem 5%;
+            }
+
+            .designers-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                margin-top: 2rem;
+            }
+
+            .designer-card {
+                background-color: white;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s;
+                cursor: pointer;
+            }
+
+            .designer-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .designer-image {
+                width: 100%;
+                height: 250px;
+                object-fit: cover;
+            }
+
+            .designer-info {
+                padding: 1.5rem;
+            }
+
+            .designer-name {
+                font-size: 1.25rem;
+                color: var(--primary-color);
+                margin-bottom: 0.5rem;
+            }
+
+            .designer-specialty {
+                color: var(--secondary-color);
+                font-size: 0.9rem;
+                margin-bottom: 1rem;
+            }
+
+            .designer-stats {
+                display: flex;
+                justify-content: space-between;
+                padding: 1rem 0;
+                border-top: 1px solid #eee;
+            }
+
+            .stat {
+                text-align: center;
+            }
+
+            .stat-number {
+                font-weight: bold;
+                color: var(--accent-color);
+            }
+
+            .stat-label {
+                font-size: 0.8rem;
+                color: var(--dark-color);
+            }
+
+            /* Designer Modal */
+            .modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.8);
+                z-index: 1000;
+                overflow-y: auto;
+            }
+
+            .modal-content {
+                background-color: white;
+                margin: 5% auto;
+                padding: 2rem;
+                width: 90%;
+                max-width: 800px;
+                border-radius: 10px;
+                position: relative;
+            }
+
+            .close-modal {
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: var(--dark-color);
+            }
+
+            .designer-profile {
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                gap: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            .profile-image {
+                width: 100%;
+                border-radius: 10px;
+            }
+
+            .profile-info h2 {
+                color: var(--primary-color);
+                margin-bottom: 1rem;
+            }
+
+            .achievements {
+                margin: 2rem 0;
+            }
+
+            .achievement-item {
+                background-color: #f8f9fa;
+                padding: 1rem;
+                margin-bottom: 1rem;
+                border-radius: 5px;
+            }
+
+            .collections {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+
+            .collection-item {
+                position: relative;
+            }
+
+            .collection-image {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                border-radius: 5px;
+            }
+
+            .collection-name {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.7);
+                color: white;
+                padding: 0.5rem;
+                text-align: center;
+            }
+
+            /* Footer Styles (matching index.html) */
+            footer {
+                background-color: var(--primary-color);
+                color: white;
+                text-align: center;
+                padding: 2rem;
+                margin-top: 3rem;
+            }
+
+            /* Responsive Design */
+            @media (max-width: 768px) {
+                nav ul {
+                    flex-direction: column;
+                    text-align: center;
+                }
+
+                .designer-profile {
+                    grid-template-columns: 1fr;
+                }
+
+                .modal-content {
+                    margin: 10% 5%;
+                    padding: 1rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Customo Shopy</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#products">Products</a></li>
+                    <li><a href="index.html#designers">Designers</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="page-title">
+            <h1>Our Expert Designers</h1>
+            <p>
+                Connect with talented designers who will bring your vision to
+                life
+            </p>
+        </div>
+
+        <div class="category-filter">
+            <button
+                class="category-btn active"
+                onclick="filterDesigners('all')"
+            >
+                All Designers
+            </button>
+            <button class="category-btn" onclick="filterDesigners('clothing')">
+                Clothing Designers
+            </button>
+            <button class="category-btn" onclick="filterDesigners('shoes')">
+                Shoe Designers
+            </button>
+            <button class="category-btn" onclick="filterDesigners('watches')">
+                Watch Designers
+            </button>
+            <button
+                class="category-btn"
+                onclick="filterDesigners('accessories')"
+            >
+                Accessories Designers
+            </button>
+        </div>
+
+        <div class="designers-container">
+            <div class="designers-grid" id="designersGrid">
+                <!-- Designers will be populated here via JavaScript -->
+            </div>
+        </div>
+
+        <!-- Designer Modal -->
+        <div class="modal" id="designerModal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeModal()">&times;</span>
+                <div id="modalContent">
+                    <!-- Modal content will be populated here -->
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Customo Shopy. All rights reserved.</p>
+        </footer>
+
+        <script>
+            // Designer Data
+            const designers = [
+                {
+                    id: 1,
+                    name: "Sarah Johnson",
+                    image: "images/designer1.jpg",
+                    category: "clothing",
+                    specialty: "Contemporary Women's Fashion",
+                    experience: 12,
+                    projects: 150,
+                    rating: 4.8,
+                    description:
+                        "Award-winning fashion designer specializing in contemporary women's wear with a focus on sustainable materials and innovative designs.",
+                    achievements: [
+                        "Fashion Designer of the Year 2022",
+                        "Featured in Vogue Magazine",
+                        "Sustainable Fashion Award 2021",
+                    ],
+                    collections: [
+                        {
+                            name: "Spring Collection 2023",
+                            image: "images/collection1.jpg",
+                        },
+                        {
+                            name: "Eco-Friendly Line",
+                            image: "images/collection2.jpg",
+                        },
+                    ],
+                },
+                {
+                    id: 2,
+                    name: "Michael Chen",
+                    image: "images/designer2.jpg",
+                    category: "shoes",
+                    specialty: "Athletic Footwear Design",
+                    experience: 8,
+                    projects: 120,
+                    rating: 4.9,
+                    description:
+                        "Innovative shoe designer with expertise in athletic footwear. Known for combining performance with style.",
+                    achievements: [
+                        "Best Athletic Shoe Design 2023",
+                        "Innovation in Footwear Award",
+                        "Collaboration with major sports brands",
+                    ],
+                    collections: [
+                        {
+                            name: "Performance Series",
+                            image: "images/collection3.jpg",
+                        },
+                        {
+                            name: "Urban Athletes",
+                            image: "images/collection4.jpg",
+                        },
+                    ],
+                },
+                // Add more designers following the same pattern...
+            ];
+
+            // Function to create designer cards
+            function createDesignerCard(designer) {
+                return `
+                <div class="designer-card" onclick="showDesignerDetails(${designer.id})">
+                    <img src="${designer.image}" alt="${designer.name}" class="designer-image">
+                    <div class="designer-info">
+                        <h3 class="designer-name">${designer.name}</h3>
+                        <p class="designer-specialty">${designer.specialty}</p>
+                        <div class="designer-stats">
+                            <div class="stat">
+                                <div class="stat-number">${designer.experience}+</div>
+                                <div class="stat-label">Years</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">${designer.projects}</div>
+                                <div class="stat-label">Projects</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">${designer.rating}</div>
+                                <div class="stat-label">Rating</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            }
+
+            // Function to show designer details in modal
+            function showDesignerDetails(designerId) {
+                const designer = designers.find((d) => d.id === designerId);
+                const modal = document.getElementById("designerModal");
+                const modalContent = document.getElementById("modalContent");
+
+                modalContent.innerHTML = `
+                <div class="designer-profile">
+                    <img src="${designer.image}" alt="${designer.name}" class="profile-image">
+                    <div class="profile-info">
+                        <h2>${designer.name}</h2>
+                        <p>${designer.description}</p>
+                        <div class="designer-stats">
+                            <div class="stat">
+                                <div class="stat-number">${designer.experience}+</div>
+                                <div class="stat-label">Years Experience</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">${designer.projects}</div>
+                                <div class="stat-label">Completed Projects</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">${designer.rating}</div>
+                                <div class="stat-label">Client Rating</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="achievements">
+                    <h3>Achievements</h3>
+                    ${designer.achievements
+                        .map(
+                            (achievement) =>
+                                `<div class="achievement-item">${achievement}</div>`,
+                        )
+                        .join("")}
+                </div>
+                <h3>Collections</h3>
+                <div class="collections">
+                    ${designer.collections
+                        .map(
+                            (collection) => `
+                        <div class="collection-item">
+                            <img src="${collection.image}" alt="${collection.name}" class="collection-image">
+                            <div class="collection-name">${collection.name}</div>
+                        </div>
+                    `,
+                        )
+                        .join("")}
+                </div>
+            `;
+
+                modal.style.display = "block";
+            }
+
+            // Function to close modal
+            function closeModal() {
+                document.getElementById("designerModal").style.display = "none";
+            }
+
+            // Function to filter designers
+            function filterDesigners(category) {
+                const buttons = document.querySelectorAll(".category-btn");
+                buttons.forEach((btn) => btn.classList.remove("active"));
+                event.target.classList.add("active");
+
+                const filteredDesigners =
+                    category === "all"
+                        ? designers
+                        : designers.filter(
+                              (designer) => designer.category === category,
+                          );
+
+                document.getElementById("designersGrid").innerHTML =
+                    filteredDesigners
+                        .map((designer) => createDesignerCard(designer))
+                        .join("");
+            }
+
+            // Close modal when clicking outside
+            window.onclick = function (event) {
+                const modal = document.getElementById("designerModal");
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            };
+
+            // Initial load
+            document.addEventListener("DOMContentLoaded", () => {
+                document.getElementById("designersGrid").innerHTML = designers
+                    .map((designer) => createDesignerCard(designer))
+                    .join("");
+            });
+        </script>
+    </body>
+</html>

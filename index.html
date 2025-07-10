@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customo Shopy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Customo Shopy</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#products">Products</a></li>
+                <li><a href="index.html#designers">Designers</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="signup.html">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home">
+        <h2>Welcome to Customo Shopy</h2>
+        <p>Customize your style with exclusive designers.</p>
+    </section>
+
+    <section id="products">
+        <h2>Our Customizable Products</h2>
+        <div class="product-list">
+            <div class="product-card" onclick="location.href='clothespage.html'">
+                <img src="images/clothes-preview.jpg" alt="clothes" style="border: 2px solid black; border-radius: 10px;" />Clothes </div>
+            
+            <div class="product-card" onclick="window.location.href='watches.html'">
+                <img src="images/watch-preview.jpg" alt="Watches" style="border: 2px solid black; border-radius: 10px;"  />watches
+            </div>
+              
+            <div class="product-card" onclick="location.href='shoes.html'">
+                <img src="images/shoe-preview.jpg" alt="Shoes">Shoes
+               
+              </div>
+              
+            <div class="product-card" onclick="location.href='accessories.html'">
+                <img src="images/accessories-preview.jpg" alt="Accessories">Accessories
+               
+            </div>
+              
+        </div>
+    </section>
+
+    <section id="designers">
+        <h2>Connect with Custom Designers</h2>
+        <p>Find the perfect designer for your custom needs.</p>
+        <button onclick="location.href='designers.html'" class="find-designers-btn">
+            Find Designers
+          </button>
+    </section>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <p>Customo Shopy is your one-stop platform for customizing clothes, watches, shoes, and more. We connect you with the best designers to bring your creative ideas to life.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Customo Shopy. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

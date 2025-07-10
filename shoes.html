@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Shoes Collection - Customo Shopy</title>
+        <style>
+            body {
+                font-family: "Segoe UI", sans-serif;
+                background-color: #f8f9fa;
+                margin: 0;
+                padding: 0;
+                color: #333;
+            }
+
+            header {
+                background-color: #1d3557;
+                color: white;
+                padding: 20px;
+                text-align: center;
+            }
+
+            .filters {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                padding: 15px;
+                background-color: #fff;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                flex-wrap: wrap;
+                position: sticky;
+                top: 0;
+                z-index: 100;
+            }
+
+            .filters select,
+            .filters input[type="text"] {
+                padding: 12px 20px;
+                font-size: 16px;
+                border-radius: 8px;
+                border: 1px solid #ddd;
+                outline: none;
+                transition: all 0.3s ease;
+            }
+
+            .filters select:focus,
+            .filters input[type="text"]:focus {
+                border-color: #1d3557;
+                box-shadow: 0 0 0 2px rgba(29, 53, 87, 0.1);
+            }
+
+            .product-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 25px;
+                padding: 30px;
+                max-width: 1400px;
+                margin: 0 auto;
+            }
+
+            .product {
+                background-color: white;
+                padding: 15px;
+                border-radius: 12px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                cursor: pointer;
+                transition:
+                    transform 0.3s,
+                    box-shadow 0.3s;
+                overflow: hidden;
+            }
+
+            .product:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            }
+
+            .product img {
+                width: 100%;
+                height: 220px;
+                object-fit: cover;
+                border-radius: 8px;
+                margin-bottom: 10px;
+                transition: transform 0.3s ease;
+            }
+
+            .product:hover img {
+                transform: scale(1.05);
+            }
+
+            .product-info {
+                text-align: center;
+                padding: 10px 0;
+            }
+
+            .product-info h3 {
+                margin: 10px 0 5px;
+                color: #1d3557;
+                font-size: 1.2rem;
+            }
+
+            .product-info p {
+                color: #e63946;
+                font-weight: bold;
+                margin: 5px 0;
+                font-size: 1.1rem;
+            }
+
+            footer {
+                text-align: center;
+                padding: 30px;
+                background-color: #1d3557;
+                color: white;
+                margin-top: 50px;
+            }
+
+            /* Responsive Design */
+            @media (max-width: 768px) {
+                .filters {
+                    flex-direction: column;
+                    padding: 10px;
+                }
+
+                .filters select,
+                .filters input[type="text"] {
+                    width: 100%;
+                }
+
+                .product-grid {
+                    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                    padding: 15px;
+                    gap: 15px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Shoes Collection</h1>
+        </header>
+
+        <div class="filters">
+            <input
+                type="text"
+                placeholder="Search Shoes..."
+                id="searchBox"
+                onkeyup="filterProducts()"
+            />
+            <select id="categoryFilter" onchange="filterProducts()">
+                <option value="all">All Categories</option>
+                <option value="sports">Sports</option>
+                <option value="formal">Formal</option>
+                <option value="casual">Casual</option>
+            </select>
+            <select id="sortFilter" onchange="filterProducts()">
+                <option value="default">Sort By</option>
+                <option value="low-high">Price: Low to High</option>
+                <option value="high-low">Price: High to Low</option>
+            </select>
+        </div>
+
+        <div class="product-grid" id="productGrid">
+            <div class="product" onclick="navigateToProduct('shoe1')">
+                <img src="images/shoes1.jpg" alt="sports Shoe 1" />
+                <div class="product-info">
+                    <h3>Air Zoom Alpha</h3>
+                    <p>$129.99</p>
+                </div>
+            </div>
+            <div class="product" onclick="navigateToProduct('shoe2')">
+                <img src="images/shoes2.jpg" alt="formal Shoe 2" />
+                <div class="product-info">
+                    <h3>Classic Leather</h3>
+                    <p>$89.99</p>
+                </div>
+            </div>
+            <div class="product" onclick="navigateToProduct('shoe3')">
+                <img src="images/shoes3.jpg" alt="sports Shoe 3" />
+                <div class="product-info">
+                    <h3>Sport Pro Max</h3>
+                    <p>$149.99</p>
+                </div>
+            </div>
+            <div class="product" onclick="navigateToProduct('shoe4')">
+                <img src="images/shoes4.jpg" alt="formal Shoe 4" />
+                <div class="product-info">
+                    <h3>Oxford Elite</h3>
+                    <p>$159.99</p>
+                </div>
+            </div>
+            <div class="product" onclick="navigateToProduct('shoe5')">
+                <img src="images/shoes5.jpg" alt="casual Shoe 5" />
+                <div class="product-info">
+                    <h3>Urban Walker</h3>
+                    <p>$79.99</p>
+                </div>
+            </div>
+            <div class="product" onclick="navigateToProduct('shoe6')">
+                <img src="images/shoes6.jpg" alt="sports Shoe 6" />
+                <div class="product-info">
+                    <h3>Runner Pro</h3>
+                    <p>$119.99</p>
+                </div>
+            </div>
+            <div class="product" onclick="navigateToProduct('shoe7')">
+                <img src="images/shoes7.jpg" alt="casual Shoe 7" />
+                <div class="product-info">
+                    <h3>Daily Comfort</h3>
+                    <p>$69.99</p>
+                </div>
+            </div>
+            <div class="product" onclick="navigateToProduct('shoe8')">
+                <img src="images/shoes8.jpg" alt="formal Shoe 8" />
+                <div class="product-info">
+                    <h3>Business Pro</h3>
+                    <p>$139.99</p>
+                </div>
+            </div>
+            <div class="product" onclick="navigateToProduct('shoe9')">
+                <img src="images/shoes9.jpg" alt="sports Shoe 9" />
+                <div class="product-info">
+                    <h3>Trail Blazer</h3>
+                    <p>$109.99</p>
+                </div>
+            </div>
+            <div class="product" onclick="navigateToProduct('shoe10')">
+                <img src="images/shoes10.jpg" alt="casual Shoe 10" />
+                <div class="product-info">
+                    <h3>Street Style</h3>
+                    <p>$89.99</p>
+                </div>
+            </div>
+            <div class="product" onclick="navigateToProduct('shoe11')">
+                <img src="images/shoes11.jpg" alt="sports Shoe 11" />
+                <div class="product-info">
+                    <h3>Fitness Max</h3>
+                    <p>$129.99</p>
+                </div>
+            </div>
+            <div class="product" onclick="navigateToProduct('shoe12')">
+                <img src="images/shoes12.jpg" alt="formal Shoe 12" />
+                <div class="product-info">
+                    <h3>Leather Loafer</h3>
+                    <p>$99.99</p>
+                </div>
+            </div>
+            <div class="product" onclick="navigateToProduct('shoe13')">
+                <img src="images/shoes13.jpg" alt="casual Shoe 13" />
+                <div class="product-info">
+                    <h3>Canvas Casual</h3>
+                    <p>$59.99</p>
+                </div>
+            </div>
+            <div class="product" onclick="navigateToProduct('shoe14')">
+                <img src="images/shoes14.jpg" alt="sports Shoe 14" />
+                <div class="product-info">
+                    <h3>Sprint Elite</h3>
+                    <p>$139.99</p>
+                </div>
+            </div>
+            <div class="product" onclick="navigateToProduct('shoe15')">
+                <img src="images/shoes15.jpg" alt="casual Shoe 15" />
+                <div class="product-info">
+                    <h3>Everyday Comfort</h3>
+                    <p>$79.99</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2025 Customo Shopy. All rights reserved.</p>
+        </footer>
+
+        <script>
+            function navigateToProduct(id) {
+                window.location.href = `shoe-details.html?id=${id}`;
+            }
+
+            function filterProducts() {
+                const search = document
+                    .getElementById("searchBox")
+                    .value.toLowerCase();
+                const category =
+                    document.getElementById("categoryFilter").value;
+                const sortBy = document.getElementById("sortFilter").value;
+                const products = Array.from(
+                    document.querySelectorAll(".product"),
+                );
+
+                // Filter products
+                products.forEach((product) => {
+                    const title = product
+                        .querySelector("h3")
+                        .textContent.toLowerCase();
+                    const altText = product
+                        .querySelector("img")
+                        .alt.toLowerCase();
+                    const showSearch =
+                        title.includes(search) || altText.includes(search);
+                    const showCategory =
+                        category === "all" || altText.includes(category);
+
+                    product.style.display =
+                        showSearch && showCategory ? "" : "none";
+                });
+
+                // Sort products
+                if (sortBy !== "default") {
+                    const visibleProducts = products.filter(
+                        (p) => p.style.display !== "none",
+                    );
+                    visibleProducts.sort((a, b) => {
+                        const priceA = parseFloat(
+                            a.querySelector("p").textContent.replace("$", ""),
+                        );
+                        const priceB = parseFloat(
+                            b.querySelector("p").textContent.replace("$", ""),
+                        );
+                        return sortBy === "low-high"
+                            ? priceA - priceB
+                            : priceB - priceA;
+                    });
+
+                    const productGrid = document.getElementById("productGrid");
+                    visibleProducts.forEach((product) => {
+                        productGrid.appendChild(product);
+                    });
+                }
+            }
+
+            // Optional: Add animation when products are filtered
+            document.querySelectorAll(".product").forEach((product) => {
+                product.addEventListener("animationend", function () {
+                    if (this.style.display === "none") {
+                        this.style.opacity = "0";
+                    } else {
+                        this.style.opacity = "1";
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
